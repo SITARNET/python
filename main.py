@@ -1,8 +1,7 @@
-def boolean_to_string(b):
-    #your code here
-    if b == bool(True) or b == bool(False):
-        b = str(b)
-        return b
+def make_upper_case(s):
+    # Code here
+    s = s.upper()
+    return s
 
 
-boolean_to_string(False)
+make_upper_case("eee")
