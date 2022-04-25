@@ -49,14 +49,22 @@
 #
 # print(rental_car_cost(6))
 
-def positive_sum(arr):
-    s = 0
-    for i in arr:
-        if i > 0:
-            s += i
-    return s
+# def positive_sum(arr):
+#     s = 0
+#     for i in arr:
+#         if i > 0:
+#             s += i
+#     return s
+#
+#
+# a = positive_sum([])
+# print(a)
+
+def no_space(x):
+    #your code here
+    x = ''.join(x.split())
+    return x
 
 
-a = positive_sum([])
+a = no_space('jfBm  gk lf8hg  88lbe8 ')
 print(a)
-
