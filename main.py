@@ -38,13 +38,27 @@
 # b = better_than_average([3, 7], 2)
 # print(b)
 
-def rental_car_cost(d):
-    if d >= 7:
-        price = (d * 40) - 50
-    elif 3 <= d < 7:
-        price = (d * 40) - 20
-    else:
-        price = d * 40
-    return price
+# def rental_car_cost(d):
+#     if d >= 7:
+#         price = (d * 40) - 50
+#     elif 3 <= d < 7:
+#         price = (d * 40) - 20
+#     else:
+#         price = d * 40
+#     return price
+#
+# print(rental_car_cost(6))
 
-print(rental_car_cost(6))
+def positive_sum(arr):
+    s = 0
+    for i in arr:
+        if i > 0:
+            s += i
+        elif i == 0:
+            return 0
+    return s
+
+
+a = positive_sum([2, -4])
+print(a)
+
