@@ -54,11 +54,9 @@ def positive_sum(arr):
     for i in arr:
         if i > 0:
             s += i
-        elif i == 0:
-            return 0
     return s
 
 
-a = positive_sum([2, -4])
+a = positive_sum([])
 print(a)
 
