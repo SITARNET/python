@@ -25,15 +25,26 @@
 #print(c)
 
 
-import statistics
+# import statistics
+#
+# def better_than_average(class_points, your_points):
+#     middle = int(statistics.mean(class_points))
+#     print(middle)
+#     if middle < your_points:
+#         return True
+#     else:
+#         return False
+#
+# b = better_than_average([3, 7], 2)
+# print(b)
 
-def better_than_average(class_points, your_points):
-    middle = int(statistics.mean(class_points))
-    print(middle)
-    if middle < your_points:
-        return True
+def rental_car_cost(d):
+    if d >= 7:
+        price = (d * 40) - 50
+    elif 3 <= d < 7:
+        price = (d * 40) - 20
     else:
-        return False
+        price = d * 40
+    return price
 
-b = better_than_average([3, 7], 2)
-print(b)
+print(rental_car_cost(6))
