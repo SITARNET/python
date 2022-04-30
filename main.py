@@ -70,9 +70,21 @@
 # print(a)
 
 
-def solution(string):
-    reversed_string = string[::-1]
-    return reversed_string
+# def solution(string):
+#     reversed_string = string[::-1]
+#     return reversed_string
+#
+#
+# print(solution("World"))
 
 
-print(solution("World"))
+# def friend(x):
+#     #Code
+#     new_friends = []
+#     for i in x:
+#         if len(i) == 4:
+#             new_friends.append(i)
+#     return new_friends
+#
+#
+# print(friend(["Jimm", "Cari", "aret", "truehdnviegkwgvke", "sixtyiscooooool"]))
