@@ -60,11 +60,19 @@
 # a = positive_sum([])
 # print(a)
 
-def no_space(x):
-    #your code here
-    x = ''.join(x.split())
-    return x
+# def no_space(x):
+#     #your code here
+#     x = ''.join(x.split())
+#     return x
+#
+#
+# a = no_space('jfBm  gk lf8hg  88lbe8 ')
+# print(a)
 
 
-a = no_space('jfBm  gk lf8hg  88lbe8 ')
-print(a)
+def solution(string):
+    reversed_string = string[::-1]
+    return reversed_string
+
+
+print(solution("World"))
