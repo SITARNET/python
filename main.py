@@ -78,13 +78,28 @@
 # print(solution("World"))
 
 
-def friend(x):
-    #Code
-    new_friends = []
-    for i in x:
-        if len(i) == 4:
-            new_friends.append(i)
-    return new_friends
+# def friend(x):
+#     #Code
+#     new_friends = []
+#     for i in x:
+#         if len(i) == 4:
+#             new_friends.append(i)
+#     return new_friends
+#
+#
+# print(friend(["Jimm", "Cari", "aret", "truehdnviegkwgvke", "sixtyiscooooool"]))
 
 
-print(friend(["Jimm", "Cari", "aret", "truehdnviegkwgvke", "sixtyiscooooool"]))
+def printer_error(s):
+    # your code
+    colors = "abcdefghijklm"
+    len_s = len(s)
+    count_colors_out = 0
+    for i in s:
+        if i not in colors:
+            count_colors_out += 1
+
+    return "{}/{}".format(count_colors_out, len_s)
+
+s = "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"
+print(printer_error(s))
