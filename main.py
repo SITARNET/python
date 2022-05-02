@@ -118,10 +118,21 @@
 # print(binary_array_to_number([0, 1, 1, 0]))
 
 
-def abbrev_name(name):
-    name_c = name.split()
-    first = name_c[0][0].capitalize()
-    second = name_c[1][0].capitalize()
-    return ("{}.{}".format(first, second))
+# def abbrev_name(name):
+#     name_c = name.split()
+#     first = name_c[0][0].capitalize()
+#     second = name_c[1][0].capitalize()
+#     return ("{}.{}".format(first, second))
+#
+# print(abbrev_name("patrick feenan"))
 
-print(abbrev_name("patrick feenan"))
+
+def maps(a):
+    new_list = []
+    for i in a:
+        i *= 2
+        new_list.append(i)
+    return new_list
+
+
+print(maps([2, 4, 8]))
