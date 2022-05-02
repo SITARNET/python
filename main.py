@@ -105,14 +105,23 @@
 # print(printer_error(s))
 
 
-def binary_array_to_number(arr):
-    # your code
-    string_str = ""
-    for i in arr:
-        i = str(i)
-        string_str += i
+# def binary_array_to_number(arr):
+#     # your code
+#     string_str = ""
+#     for i in arr:
+#         i = str(i)
+#         string_str += i
+#
+#     return int(string_str, 2)
+#
+#
+# print(binary_array_to_number([0, 1, 1, 0]))
 
-    return int(string_str, 2)
 
+def abbrev_name(name):
+    name_c = name.split()
+    first = name_c[0][0].capitalize()
+    second = name_c[1][0].capitalize()
+    return ("{}.{}".format(first, second))
 
-print(binary_array_to_number([0, 1, 1, 0]))
+print(abbrev_name("patrick feenan"))
