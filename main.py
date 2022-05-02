@@ -90,16 +90,29 @@
 # print(friend(["Jimm", "Cari", "aret", "truehdnviegkwgvke", "sixtyiscooooool"]))
 
 
-def printer_error(s):
+# def printer_error(s):
+#     # your code
+#     colors = "abcdefghijklm"
+#     len_s = len(s)
+#     count_colors_out = 0
+#     for i in s:
+#         if i not in colors:
+#             count_colors_out += 1
+#
+#     return "{}/{}".format(count_colors_out, len_s)
+#
+# s = "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"
+# print(printer_error(s))
+
+
+def binary_array_to_number(arr):
     # your code
-    colors = "abcdefghijklm"
-    len_s = len(s)
-    count_colors_out = 0
-    for i in s:
-        if i not in colors:
-            count_colors_out += 1
+    string_str = ""
+    for i in arr:
+        i = str(i)
+        string_str += i
 
-    return "{}/{}".format(count_colors_out, len_s)
+    return int(string_str, 2)
 
-s = "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"
-print(printer_error(s))
+
+print(binary_array_to_number([0, 1, 1, 0]))
