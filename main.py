@@ -127,12 +127,22 @@
 # print(abbrev_name("patrick feenan"))
 
 
-def maps(a):
-    new_list = []
-    for i in a:
-        i *= 2
-        new_list.append(i)
-    return new_list
+# def maps(a):
+#     new_list = []
+#     for i in a:
+#         i *= 2
+#         new_list.append(i)
+#     return new_list
+#
+#
+# print(maps([2, 4, 8]))
 
 
-print(maps([2, 4, 8]))
+def zero_fuel(distance_to_pump, mpg, fuel_left):
+    auto_dist = fuel_left * mpg
+    if auto_dist >= distance_to_pump:
+        return True
+    else:
+        return False
+
+print(zero_fuel(12, 24, 4))
