@@ -160,8 +160,18 @@
 # print(count_sheep(5))
 
 
-def dna_to_rna(dna):
-    dna_new = dna.replace("T", "U")
-    return dna_new
+# def dna_to_rna(dna):
+#     dna_new = dna.replace("T", "U")
+#     return dna_new
+#
+# print(dna_to_rna("GCA"))
 
-print(dna_to_rna("GCA"))
+
+def paperwork(n, m):
+    if n < 0 or m < 0:
+        return 0
+    else:
+        return n * m
+
+
+print(paperwork(5, 6))
