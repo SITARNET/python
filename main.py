@@ -138,11 +138,23 @@
 # print(maps([2, 4, 8]))
 
 
-def zero_fuel(distance_to_pump, mpg, fuel_left):
-    auto_dist = fuel_left * mpg
-    if auto_dist >= distance_to_pump:
-        return True
-    else:
-        return False
+# def zero_fuel(distance_to_pump, mpg, fuel_left):
+#     auto_dist = fuel_left * mpg
+#     if auto_dist >= distance_to_pump:
+#         return True
+#     else:
+#         return False
+#
+# print(zero_fuel(12, 24, 4))
 
-print(zero_fuel(12, 24, 4))
+
+def count_sheep(n):
+    a = "sheep..."
+    sheeps = ""
+    for i in range(1, n+1):
+        sheep = str(i) + " " + a
+        sheeps += sheep
+    return sheeps
+
+
+print(count_sheep(5))
