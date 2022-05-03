@@ -167,11 +167,22 @@
 # print(dna_to_rna("GCA"))
 
 
-def paperwork(n, m):
-    if n < 0 or m < 0:
-        return 0
-    else:
-        return n * m
+# def paperwork(n, m):
+#     if n < 0 or m < 0:
+#         return 0
+#     else:
+#         return n * m
+#
+#
+# print(paperwork(5, 6))
 
 
-print(paperwork(5, 6))
+def minimum(arr):
+    return min(arr)
+
+def maximum(arr):
+    return max(arr)
+
+
+print(maximum([-52, 56, 30, 29, -54, 0, -110]))
+print(minimum([-52, 56, 30, 29, -54, 0, -110]))
