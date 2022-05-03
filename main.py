@@ -148,13 +148,20 @@
 # print(zero_fuel(12, 24, 4))
 
 
-def count_sheep(n):
-    a = "sheep..."
-    sheeps = ""
-    for i in range(1, n+1):
-        sheep = str(i) + " " + a
-        sheeps += sheep
-    return sheeps
+# def count_sheep(n):
+#     a = "sheep..."
+#     sheeps = ""
+#     for i in range(1, n+1):
+#         sheep = str(i) + " " + a
+#         sheeps += sheep
+#     return sheeps
+#
+#
+# print(count_sheep(5))
 
 
-print(count_sheep(5))
+def dna_to_rna(dna):
+    dna_new = dna.replace("T", "U")
+    return dna_new
+
+print(dna_to_rna("GCA"))
