@@ -200,11 +200,26 @@
 # print(check(["when's", "the", "next", "Katathon?", 9, 7], "the"))
 
 
-def string_to_number(s):
-    n = int(s)
-    return n
+# def string_to_number(s):
+#     n = int(s)
+#     return n
+#
+#
+# print(string_to_number("543"))
 
 
-print(string_to_number("543"))
+def DNA_strand(dna):
+        dnanew = ''
+        for d in dna:
+                if d == 'A':
+                        dnanew += 'T'
+                elif d == 'T':
+                        dnanew += 'A'
+                elif d == 'G':
+                        dnanew += 'C'
+                elif d == 'C':
+                        dnanew += 'G'
+        return dnanew
 
 
+print(DNA_strand("AAATTT"))
