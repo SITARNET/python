@@ -188,17 +188,23 @@
 # print(minimum([-52, 56, 30, 29, -54, 0, -110]))
 
 
-def check(seq, elem):
-    if elem in seq:
-        return True
-    else:
-        return False
+# def check(seq, elem):
+#     if elem in seq:
+#         return True
+#     else:
+#         return False
+#
+# # return elem in seq
+#
+#
+# print(check(["when's", "the", "next", "Katathon?", 9, 7], "the"))
 
-# return elem in seq
+
+def string_to_number(s):
+    n = int(s)
+    return n
 
 
-print(check(["when's", "the", "next", "Katathon?", 9, 7], "the"))
-
-
+print(string_to_number("543"))
 
 
