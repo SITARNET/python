@@ -177,12 +177,28 @@
 # print(paperwork(5, 6))
 
 
-def minimum(arr):
-    return min(arr)
+# def minimum(arr):
+#     return min(arr)
+#
+# def maximum(arr):
+#     return max(arr)
+#
+#
+# print(maximum([-52, 56, 30, 29, -54, 0, -110]))
+# print(minimum([-52, 56, 30, 29, -54, 0, -110]))
 
-def maximum(arr):
-    return max(arr)
+
+def check(seq, elem):
+    if elem in seq:
+        return True
+    else:
+        return False
+
+# return elem in seq
 
 
-print(maximum([-52, 56, 30, 29, -54, 0, -110]))
-print(minimum([-52, 56, 30, 29, -54, 0, -110]))
+print(check(["when's", "the", "next", "Katathon?", 9, 7], "the"))
+
+
+
+
