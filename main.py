@@ -208,7 +208,7 @@
 # print(string_to_number("543"))
 
 
-def DNA_strand(dna):
+# def DNA_strand(dna):
 #         dnanew = ''
 #         for d in dna:
 #                 if d == 'A':
@@ -224,3 +224,17 @@ def DNA_strand(dna):
 #         return dna.translate(str.maketrans("ATCG","TAGC"))
 #
 # print(DNA_strand("AAATTT"))
+
+
+import math
+
+def find_next_square(sq):
+    t = math.sqrt(sq)
+    if t.is_integer():
+        int_num = math.sqrt(sq) + 1
+        return int_num ** 2
+    else:
+        return -1
+
+
+print(find_next_square(121))
