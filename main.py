@@ -226,15 +226,24 @@
 # print(DNA_strand("AAATTT"))
 
 
-import math
+# import math
+#
+# def find_next_square(sq):
+#     t = math.sqrt(sq)
+#     if t.is_integer():
+#         int_num = math.sqrt(sq) + 1
+#         return int_num ** 2
+#     else:
+#         return -1
+#
+#
+# print(find_next_square(121))
 
-def find_next_square(sq):
-    t = math.sqrt(sq)
-    if t.is_integer():
-        int_num = math.sqrt(sq) + 1
-        return int_num ** 2
-    else:
-        return -1
 
+def reverse_seq(n):
+    arr = []
+    for i in range(1, n+1):
+        arr.append(i)
+    return arr[::-1]
 
-print(find_next_square(121))
+print(reverse_seq(8))
