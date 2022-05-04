@@ -209,17 +209,18 @@
 
 
 def DNA_strand(dna):
-        dnanew = ''
-        for d in dna:
-                if d == 'A':
-                        dnanew += 'T'
-                elif d == 'T':
-                        dnanew += 'A'
-                elif d == 'G':
-                        dnanew += 'C'
-                elif d == 'C':
-                        dnanew += 'G'
-        return dnanew
+#         dnanew = ''
+#         for d in dna:
+#                 if d == 'A':
+#                         dnanew += 'T'
+#                 elif d == 'T':
+#                         dnanew += 'A'
+#                 elif d == 'G':
+#                         dnanew += 'C'
+#                 elif d == 'C':
+#                         dnanew += 'G'
+#         return dnanew
 
-
-print(DNA_strand("AAATTT"))
+#         return dna.translate(str.maketrans("ATCG","TAGC"))
+#
+# print(DNA_strand("AAATTT"))
