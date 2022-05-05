@@ -240,10 +240,21 @@
 # print(find_next_square(121))
 
 
-def reverse_seq(n):
-    arr = []
-    for i in range(1, n+1):
-        arr.append(i)
-    return arr[::-1]
+# def reverse_seq(n):
+#     arr = []
+#     for i in range(1, n+1):
+#         arr.append(i)
+#     return arr[::-1]
+#
+# print(reverse_seq(8))
 
-print(reverse_seq(8))
+
+def summation(num):
+    sum = 0
+    for i in range(1, num+1):
+        sum += i
+    return sum
+
+# return sum(range(num + 1))
+
+print(summation(8))
