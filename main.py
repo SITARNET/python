@@ -249,12 +249,24 @@
 # print(reverse_seq(8))
 
 
-def summation(num):
-    sum = 0
-    for i in range(1, num+1):
-        sum += i
-    return sum
+# def summation(num):
+#     sum = 0
+#     for i in range(1, num+1):
+#         sum += i
+#     return sum
+#
+# # return sum(range(num + 1))
+#
+# print(summation(8))
 
-# return sum(range(num + 1))
 
-print(summation(8))
+def calculate_years(principal, interest, tax, desired):
+    years = 0
+    while principal < desired:
+        years = years + 1
+        total_interest = principal * interest
+        interest_tax = total_interest * tax
+        principal = principal + (total_interest - interest_tax)
+    return years
+
+print(calculate_years(1000, 0.05, 0.18, 1100))
