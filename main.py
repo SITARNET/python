@@ -346,18 +346,31 @@
 # print(to_jaden_case(string))
 
 
-def get_grade(s1, s2, s3):
-    cen = (s1 + s2 + s3) / 3
-    if 90 <= cen <= 100:
-        return "A"
-    elif 80 <= cen < 90:
-        return "B"
-    elif 70 <= cen < 80:
-        return "C"
-    elif 60 <= cen < 70:
-        return "D"
-    if 0 <= cen < 60:
-        return "F"
+# def get_grade(s1, s2, s3):
+#     cen = (s1 + s2 + s3) / 3
+#     if 90 <= cen <= 100:
+#         return "A"
+#     elif 80 <= cen < 90:
+#         return "B"
+#     elif 70 <= cen < 80:
+#         return "C"
+#     elif 60 <= cen < 70:
+#         return "D"
+#     if 0 <= cen < 60:
+#         return "F"
+#
+#
+# print(get_grade(72, 70, 75))
 
 
-print(get_grade(72, 70, 75))
+def simple_multiplication(number):
+    if number % 2 == 0:
+        number *= 8
+        return number
+    else:
+        number *= 9
+        return number
+
+# return number * (8 if number % 2 == 0 else 9)
+
+print(simple_multiplication(4))
