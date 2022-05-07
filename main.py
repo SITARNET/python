@@ -320,7 +320,13 @@
 #     return (year + 99) // 100
 
 
-def solution(string, ending):
-    return string.endswith(ending)
+# def solution(string, ending):
+#     return string.endswith(ending)
+#
+# print(solution('abcde', 'cde'))
 
-print(solution('abcde', 'cde'))
+
+def greet():
+    return "hello world!"
+
+print(greet())
