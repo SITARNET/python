@@ -304,13 +304,17 @@
 # print(sum_mix(['1', '5', '8', 8, 9, 9, 2, '3']))
 
 
+# def century(year):
+#     if year % 100 > 0:
+#         cen = int(year / 100 + 1)
+#         return cen
+#     else:
+#         cen = int(year / 100)
+#         return cen
+#
+#
+# print(century(2022))
+
+
 def century(year):
-    if year % 100 > 0:
-        cen = int(year / 100 + 1)
-        return cen
-    else:
-        cen = int(year / 100)
-        return cen
-
-
-print(century(2022))
+    return (year + 99) // 100
