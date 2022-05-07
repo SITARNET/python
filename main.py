@@ -332,15 +332,32 @@
 # print(greet())
 
 
-def to_jaden_case(string):
-    lt = string.split()
-    a = []
-    for i in lt:
-        i = i.capitalize()
-        a.append(i)
-    return ' '.join(a)
+# def to_jaden_case(string):
+#     lt = string.split()
+#     a = []
+#     for i in lt:
+#         i = i.capitalize()
+#         a.append(i)
+#     return ' '.join(a)
+#
+# # return string.capwords(NonJadenStrings)
+#
+# string = "How can mirrors be real if our eyes aren't real"
+# print(to_jaden_case(string))
 
-# return string.capwords(NonJadenStrings)
 
-string = "How can mirrors be real if our eyes aren't real"
-print(to_jaden_case(string))
+def get_grade(s1, s2, s3):
+    cen = (s1 + s2 + s3) / 3
+    if 90 <= cen <= 100:
+        return "A"
+    elif 80 <= cen < 90:
+        return "B"
+    elif 70 <= cen < 80:
+        return "C"
+    elif 60 <= cen < 70:
+        return "D"
+    if 0 <= cen < 60:
+        return "F"
+
+
+print(get_grade(72, 70, 75))
