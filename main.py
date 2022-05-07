@@ -326,7 +326,21 @@
 # print(solution('abcde', 'cde'))
 
 
-def greet():
-    return "hello world!"
+# def greet():
+#     return "hello world!"
+#
+# print(greet())
 
-print(greet())
+
+def to_jaden_case(string):
+    lt = string.split()
+    a = []
+    for i in lt:
+        i = i.capitalize()
+        a.append(i)
+    return ' '.join(a)
+
+# return string.capwords(NonJadenStrings)
+
+string = "How can mirrors be real if our eyes aren't real"
+print(to_jaden_case(string))
