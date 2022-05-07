@@ -376,10 +376,22 @@
 # print(simple_multiplication(4))
 
 
-def find_it(seq):
-    for i in seq:
-        if seq.count(i) % 2 > 0:
-            return i
+# def find_it(seq):
+#     for i in seq:
+#         if seq.count(i) % 2 > 0:
+#             return i
+#
+#
+# print(find_it([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
 
 
-print(find_it([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
+def digitize(n):
+    n = str(n)
+    arr = []
+    for i in n:
+        arr.append(int(i))
+    return arr[::-1]
+
+# return map(int, str(n)[::-1])
+
+print(digitize(23582357))
