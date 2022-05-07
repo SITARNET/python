@@ -316,5 +316,11 @@
 # print(century(2022))
 
 
-def century(year):
-    return (year + 99) // 100
+# def century(year):
+#     return (year + 99) // 100
+
+
+def solution(string, ending):
+    return string.endswith(ending)
+
+print(solution('abcde', 'cde'))
