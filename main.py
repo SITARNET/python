@@ -287,3 +287,30 @@
 #
 #
 # print(accum("aBcd"))
+
+# def sum_mix(arr):
+#     new_arr = []
+#     for i in arr:
+#         if type(i) == str:
+#             i = int(i)
+#             new_arr.append(i)
+#         else:
+#             new_arr.append(i)
+#     sum_arr = sum(new_arr)
+#     return sum_arr
+#
+# # return sum(map(int, arr))
+#
+# print(sum_mix(['1', '5', '8', 8, 9, 9, 2, '3']))
+
+
+def century(year):
+    if year % 100 > 0:
+        cen = int(year / 100 + 1)
+        return cen
+    else:
+        cen = int(year / 100)
+        return cen
+
+
+print(century(2022))
