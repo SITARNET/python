@@ -363,14 +363,23 @@
 # print(get_grade(72, 70, 75))
 
 
-def simple_multiplication(number):
-    if number % 2 == 0:
-        number *= 8
-        return number
-    else:
-        number *= 9
-        return number
+# def simple_multiplication(number):
+#     if number % 2 == 0:
+#         number *= 8
+#         return number
+#     else:
+#         number *= 9
+#         return number
+#
+# # return number * (8 if number % 2 == 0 else 9)
+#
+# print(simple_multiplication(4))
 
-# return number * (8 if number % 2 == 0 else 9)
 
-print(simple_multiplication(4))
+def find_it(seq):
+    for i in seq:
+        if seq.count(i) % 2 > 0:
+            return i
+
+
+print(find_it([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
