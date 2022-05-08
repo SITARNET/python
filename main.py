@@ -519,15 +519,26 @@
 # print(descending_order(145263))
 
 
-def open_or_senior(data):
-    user_list = []
-    for user in data:
-        if user[0] >= 55 and user[1] >= 7:
-                user_list.append("Senior")
-        else:
-            user_list.append("Open")
-    return user_list
+# def open_or_senior(data):
+#     user_list = []
+#     for user in data:
+#         if user[0] >= 55 and user[1] >= 7:
+#                 user_list.append("Senior")
+#         else:
+#             user_list.append("Open")
+#     return user_list
+#
+#     # return ["Senior" if age >= 55 and handicap >= 8 else "Open" for (age, handicap) in data]
+#
+# print(open_or_senior([(45, 12),(55,21),(19, -2),(104, 20)]))
 
-    # return ["Senior" if age >= 55 and handicap >= 8 else "Open" for (age, handicap) in data]
 
-print(open_or_senior([(45, 12),(55,21),(19, -2),(104, 20)]))
+def lovefunc( flower1, flower2 ):
+    if flower1 % 2 == 0 and flower2 % 2 == 0 or flower1 % 2 != 0 and flower2 % 2 != 0:
+        return False
+    else:
+        return True
+
+    # return (flower1 + flower2) % 2 != 0
+
+print(lovefunc(1, 4))
