@@ -533,12 +533,21 @@
 # print(open_or_senior([(45, 12),(55,21),(19, -2),(104, 20)]))
 
 
-def lovefunc( flower1, flower2 ):
-    if flower1 % 2 == 0 and flower2 % 2 == 0 or flower1 % 2 != 0 and flower2 % 2 != 0:
-        return False
-    else:
-        return True
+# def lovefunc( flower1, flower2 ):
+#     if flower1 % 2 == 0 and flower2 % 2 == 0 or flower1 % 2 != 0 and flower2 % 2 != 0:
+#         return False
+#     else:
+#         return True
+#
+#     # return (flower1 + flower2) % 2 != 0
+#
+# print(lovefunc(1, 4))
 
-    # return (flower1 + flower2) % 2 != 0
 
-print(lovefunc(1, 4))
+def find_smallest_int(arr):
+    a = min(arr)
+    return a
+
+    # return min(arr)
+
+print(find_smallest_int([34, -345, -1, 100]))
