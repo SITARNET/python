@@ -445,15 +445,23 @@
 # print(array_diff([1, 2, 2, 2, 3], [1, 3]))
 
 
-def reverse_words(text):
-    a = text.split(' ')
-    b = []
-    for i in a:
-        i = i[::-1]
-        b.append(i)
-    c = " ".join(b)
-    return c
+# def reverse_words(text):
+#     a = text.split(' ')
+#     b = []
+#     for i in a:
+#         i = i[::-1]
+#         b.append(i)
+#     c = " ".join(b)
+#     return c
+#
+#     # return ' '.join(s[::-1] for s in str.split(' '))
+#
+# print(reverse_words('double spaced words'))
 
-    # return ' '.join(s[::-1] for s in str.split(' '))
 
-print(reverse_words('double spaced words'))
+def double_integer(i):
+    return i + i
+
+    # return i * 2
+
+print(double_integer(-336))
