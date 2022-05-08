@@ -467,16 +467,32 @@
 # print(double_integer(-336))
 
 
-def basic_op(operator, value1, value2):
-    if operator == '+':
-        return value1 + value2
-    elif operator == '-':
-        return value1 - value2
-    elif operator == '*':
-        return value1 * value2
-    elif operator == '/':
-        return value1 / value2
+# def basic_op(operator, value1, value2):
+#     if operator == '+':
+#         return value1 + value2
+#     elif operator == '-':
+#         return value1 - value2
+#     elif operator == '*':
+#         return value1 * value2
+#     elif operator == '/':
+#         return value1 / value2
+#
+#     # return eval(f'{value1}{operator}{value2}')
+#
+# print(basic_op('+', 4, 7))
 
-    # return eval(f'{value1}{operator}{value2}')
 
-print(basic_op('+', 4, 7))
+def find_average(numbers):
+    if len(numbers) == 0:
+        return 0
+    else:
+        index = 0
+        for i in numbers:
+            index += i
+        print(index)
+        t = index / len(numbers)
+        return t
+
+    # return sum(array) / len(array) if array else 0
+
+print(find_average([1, 2, 6]))
