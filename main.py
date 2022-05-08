@@ -544,10 +544,23 @@
 # print(lovefunc(1, 4))
 
 
-def find_smallest_int(arr):
-    a = min(arr)
-    return a
+# def find_smallest_int(arr):
+#     a = min(arr)
+#     return a
+#
+#     # return min(arr)
+#
+# print(find_smallest_int([34, -345, -1, 100]))
 
-    # return min(arr)
 
-print(find_smallest_int([34, -345, -1, 100]))
+def find_needle(haystack):
+    for i in haystack:
+        i = str(i)
+        if i == "needle":
+            index = haystack.index(i) + 1
+            a = "found the needle at position {}".format(index)
+            return a
+
+    # return 'found the needle at position {}'.format(haystack.index('needle'))
+
+print(find_needle(['3', '123124234', None, 'needle', 'world', 'hay', 2, '3', True, False]))
