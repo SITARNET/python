@@ -553,14 +553,29 @@
 # print(find_smallest_int([34, -345, -1, 100]))
 
 
-def find_needle(haystack):
-    for i in haystack:
-        i = str(i)
-        if i == "needle":
-            index = haystack.index(i) + 1
-            a = "found the needle at position {}".format(index)
-            return a
+# def find_needle(haystack):
+#     for i in haystack:
+#         i = str(i)
+#         if i == "needle":
+#             index = haystack.index(i) + 1
+#             a = "found the needle at position {}".format(index)
+#             return a
+#
+#     # return 'found the needle at position {}'.format(haystack.index('needle'))
+#
+# print(find_needle(['3', '123124234', None, 'needle', 'world', 'hay', 2, '3', True, False]))
 
-    # return 'found the needle at position {}'.format(haystack.index('needle'))
 
-print(find_needle(['3', '123124234', None, 'needle', 'world', 'hay', 2, '3', True, False]))
+def sort_array(source_array):
+    odd = sorted(list(filter(lambda x: x % 2, source_array)))
+    l, c = [], 0
+    for i in source_array:
+        if i in odd:
+            l.append(odd[c])
+            c += 1
+        else:
+            l.append(i)
+    return l
+
+
+print(sort_array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]))
