@@ -423,10 +423,23 @@
 # print(tower_builder(6))
 
 
-def is_divide_by(number, a, b):
-    if number % a == 0 and number % b == 0:
-        return True
-    else:
-        return False
+# def is_divide_by(number, a, b):
+#     if number % a == 0 and number % b == 0:
+#         return True
+#     else:
+#         return False
+#
+# print(is_divide_by(15, -5, 3))
 
-print(is_divide_by(15, -5, 3))
+
+def array_diff(a, b):
+    if len(b) == 0:
+        return a
+    for i in b:
+        if i in a:
+            for n in range(a.count(i)):
+                a.remove(i)
+    return a
+
+
+print(array_diff([1, 2, 2, 2, 3], [1, 3]))
