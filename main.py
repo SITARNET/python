@@ -505,15 +505,29 @@
 # print(smash(["hello", "amazing", "world"]))
 
 
-def descending_order(num):
-    ls = list(str(num))
-    lsn = []
-    for i in ls:
-        lsn.append(i)
-    a = sorted(lsn)[::-1]
-    a = int(''.join(a))
-    return a
+# def descending_order(num):
+#     ls = list(str(num))
+#     lsn = []
+#     for i in ls:
+#         lsn.append(i)
+#     a = sorted(lsn)[::-1]
+#     a = int(''.join(a))
+#     return a
+#
+#     # return int("".join(sorted(str(num), reverse=True)))
+#
+# print(descending_order(145263))
 
-    # return int("".join(sorted(str(num), reverse=True)))
 
-print(descending_order(145263))
+def open_or_senior(data):
+    user_list = []
+    for user in data:
+        if user[0] >= 55 and user[1] >= 7:
+                user_list.append("Senior")
+        else:
+            user_list.append("Open")
+    return user_list
+
+    # return ["Senior" if age >= 55 and handicap >= 8 else "Open" for (age, handicap) in data]
+
+print(open_or_senior([(45, 12),(55,21),(19, -2),(104, 20)]))
