@@ -397,12 +397,27 @@
 # print(digitize(23582357))
 
 
-def remove_char(s):
-    # s = list(s)
-    # del s[0], s[-1]
-    # s = ''.join(s)
-    # return s
+# def remove_char(s):
+#     # s = list(s)
+#     # del s[0], s[-1]
+#     # s = ''.join(s)
+#     # return s
+#
+#     return s[1 : -1]
+#
+# print(remove_char('eloquent'))
 
-    return s[1 : -1]
 
-print(remove_char('eloquent'))
+def tower_builder(n_floors):
+    # tower = []
+    # floor = ''
+    # for f in range(n_floors):
+    #     stars = '*' * (f * 2 + 1)
+    #     spaces = ' ' * (n_floors - f - 1)
+    #     floor = spaces + stars + spaces
+    #     tower.append(floor)
+    # return tower
+
+    return [("*" * (i * 2 - 1)).center(n_floors * 2 - 1) for i in range(1, n_floors + 1)]
+
+print(tower_builder(6))
