@@ -566,16 +566,28 @@
 # print(find_needle(['3', '123124234', None, 'needle', 'world', 'hay', 2, '3', True, False]))
 
 
-def sort_array(source_array):
-    odd = sorted(list(filter(lambda x: x % 2, source_array)))
-    l, c = [], 0
-    for i in source_array:
-        if i in odd:
-            l.append(odd[c])
-            c += 1
-        else:
-            l.append(i)
-    return l
+# def sort_array(source_array):
+#     odd = sorted(list(filter(lambda x: x % 2, source_array)))
+#     l, c = [], 0
+#     for i in source_array:
+#         if i in odd:
+#             l.append(odd[c])
+#             c += 1
+#         else:
+#             l.append(i)
+#     return l
+#
+#
+# print(sort_array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]))
 
 
-print(sort_array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]))
+def area_or_perimeter(l , w):
+    if l == w:
+        sq = l * w
+        return sq
+    else:
+        sq = 2 * l + 2 * w
+        return sq
+
+
+print(area_or_perimeter(6, 3))
