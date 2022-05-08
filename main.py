@@ -498,8 +498,22 @@
 # print(find_average([1, 2, 6]))
 
 
-def smash(words):
-    return ' '.join(words)
+# def smash(words):
+#     return ' '.join(words)
+#
+#
+# print(smash(["hello", "amazing", "world"]))
 
 
-print(smash(["hello", "amazing", "world"]))
+def descending_order(num):
+    ls = list(str(num))
+    lsn = []
+    for i in ls:
+        lsn.append(i)
+    a = sorted(lsn)[::-1]
+    a = int(''.join(a))
+    return a
+
+    # return int("".join(sorted(str(num), reverse=True)))
+
+print(descending_order(145263))
