@@ -432,14 +432,28 @@
 # print(is_divide_by(15, -5, 3))
 
 
-def array_diff(a, b):
-    if len(b) == 0:
-        return a
-    for i in b:
-        if i in a:
-            for n in range(a.count(i)):
-                a.remove(i)
-    return a
+# def array_diff(a, b):
+#     if len(b) == 0:
+#         return a
+#     for i in b:
+#         if i in a:
+#             for n in range(a.count(i)):
+#                 a.remove(i)
+#     return a
+#
+#
+# print(array_diff([1, 2, 2, 2, 3], [1, 3]))
 
 
-print(array_diff([1, 2, 2, 2, 3], [1, 3]))
+def reverse_words(text):
+    a = text.split(' ')
+    b = []
+    for i in a:
+        i = i[::-1]
+        b.append(i)
+    c = " ".join(b)
+    return c
+
+    # return ' '.join(s[::-1] for s in str.split(' '))
+
+print(reverse_words('double spaced words'))
