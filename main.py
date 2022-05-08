@@ -459,9 +459,24 @@
 # print(reverse_words('double spaced words'))
 
 
-def double_integer(i):
-    return i + i
+# def double_integer(i):
+#     return i + i
+#
+#     # return i * 2
+#
+# print(double_integer(-336))
 
-    # return i * 2
 
-print(double_integer(-336))
+def basic_op(operator, value1, value2):
+    if operator == '+':
+        return value1 + value2
+    elif operator == '-':
+        return value1 - value2
+    elif operator == '*':
+        return value1 * value2
+    elif operator == '/':
+        return value1 / value2
+
+    # return eval(f'{value1}{operator}{value2}')
+
+print(basic_op('+', 4, 7))
