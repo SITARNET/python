@@ -482,17 +482,24 @@
 # print(basic_op('+', 4, 7))
 
 
-def find_average(numbers):
-    if len(numbers) == 0:
-        return 0
-    else:
-        index = 0
-        for i in numbers:
-            index += i
-        print(index)
-        t = index / len(numbers)
-        return t
+# def find_average(numbers):
+#     if len(numbers) == 0:
+#         return 0
+#     else:
+#         index = 0
+#         for i in numbers:
+#             index += i
+#         print(index)
+#         t = index / len(numbers)
+#         return t
+#
+#     # return sum(array) / len(array) if array else 0
+#
+# print(find_average([1, 2, 6]))
 
-    # return sum(array) / len(array) if array else 0
 
-print(find_average([1, 2, 6]))
+def smash(words):
+    return ' '.join(words)
+
+
+print(smash(["hello", "amazing", "world"]))
