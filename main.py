@@ -385,13 +385,24 @@
 # print(find_it([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
 
 
-def digitize(n):
-    n = str(n)
-    arr = []
-    for i in n:
-        arr.append(int(i))
-    return arr[::-1]
+# def digitize(n):
+#     n = str(n)
+#     arr = []
+#     for i in n:
+#         arr.append(int(i))
+#     return arr[::-1]
+#
+# # return map(int, str(n)[::-1])
+#
+# print(digitize(23582357))
 
-# return map(int, str(n)[::-1])
 
-print(digitize(23582357))
+def remove_char(s):
+    # s = list(s)
+    # del s[0], s[-1]
+    # s = ''.join(s)
+    # return s
+
+    return s[1 : -1]
+
+print(remove_char('eloquent'))
