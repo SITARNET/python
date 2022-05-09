@@ -581,13 +581,27 @@
 # print(sort_array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]))
 
 
-def area_or_perimeter(l , w):
-    if l == w:
-        sq = l * w
-        return sq
-    else:
-        sq = 2 * l + 2 * w
-        return sq
+# def area_or_perimeter(l , w):
+#     if l == w:
+#         sq = l * w
+#         return sq
+#     else:
+#         sq = 2 * l + 2 * w
+#         return sq
+#
+#
+# print(area_or_perimeter(6, 3))
 
 
-print(area_or_perimeter(6, 3))
+def get_count(sentence):
+    vowels = "aeiou"
+    count = 0
+    for i in sentence:
+        for a in vowels:
+            if a == i:
+                count += 1
+    return count
+
+    # return sum(c in 'aeiou' for c in s)
+
+print(get_count("abracadabra"))
