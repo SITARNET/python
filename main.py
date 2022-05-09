@@ -630,12 +630,25 @@
 # print(min_max([1, 2, 3, 4, 5]))
 
 
-def get_middle(s):
-    ln = len(s)
-    if ln % 2 != 0:
-        return s[int(ln / 2)]
-    else:
-        return s[int(ln / 2 - 1)] + s[int(ln / 2)]
+# def get_middle(s):
+#     ln = len(s)
+#     if ln % 2 != 0:
+#         return s[int(ln / 2)]
+#     else:
+#         return s[int(ln / 2 - 1)] + s[int(ln / 2)]
+#
+#
+# print(get_middle("testing"))
 
 
-print(get_middle("testing"))
+def double_char(s):
+    s = list(s)
+    arr = []
+    for i in s:
+        i += i
+        arr.append(i)
+    return ''.join(arr)
+
+    # return ''.join(c * 2 for c in s)
+
+print(double_char("Hello World"))
