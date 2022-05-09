@@ -619,12 +619,23 @@
 # print(find_nb(135440716410000))
 
 
-def min_max(lst):
-    app = []
-    app.append(min(lst))
-    app.append(max(lst))
-    return app
+# def min_max(lst):
+#     app = []
+#     app.append(min(lst))
+#     app.append(max(lst))
+#     return app
+#
+#     # return [min(lst), max(lst)]
+#
+# print(min_max([1, 2, 3, 4, 5]))
 
-    # return [min(lst), max(lst)]
 
-print(min_max([1, 2, 3, 4, 5]))
+def get_middle(s):
+    ln = len(s)
+    if ln % 2 != 0:
+        return s[int(ln / 2)]
+    else:
+        return s[int(ln / 2 - 1)] + s[int(ln / 2)]
+
+
+print(get_middle("testing"))
