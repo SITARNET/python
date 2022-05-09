@@ -593,15 +593,38 @@
 # print(area_or_perimeter(6, 3))
 
 
-def get_count(sentence):
-    vowels = "aeiou"
-    count = 0
-    for i in sentence:
-        for a in vowels:
-            if a == i:
-                count += 1
-    return count
+# def get_count(sentence):
+#     vowels = "aeiou"
+#     count = 0
+#     for i in sentence:
+#         for a in vowels:
+#             if a == i:
+#                 count += 1
+#     return count
+#
+#     # return sum(c in 'aeiou' for c in s)
+#
+# print(get_count("abracadabra"))
 
-    # return sum(c in 'aeiou' for c in s)
 
-print(get_count("abracadabra"))
+# def find_nb(m):
+#     total = 0
+#     n = 0
+#     while (total < m):
+#         n = n + 1
+#         total = total + n ** 3
+#     return n if total == m else -1
+#
+#
+# print(find_nb(135440716410000))
+
+
+def min_max(lst):
+    app = []
+    app.append(min(lst))
+    app.append(max(lst))
+    return app
+
+    # return [min(lst), max(lst)]
+
+print(min_max([1, 2, 3, 4, 5]))
