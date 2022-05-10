@@ -641,14 +641,25 @@
 # print(get_middle("testing"))
 
 
-def double_char(s):
-    s = list(s)
-    arr = []
-    for i in s:
-        i += i
-        arr.append(i)
-    return ''.join(arr)
+# def double_char(s):
+#     s = list(s)
+#     arr = []
+#     for i in s:
+#         i += i
+#         arr.append(i)
+#     return ''.join(arr)
+#
+#     # return ''.join(c * 2 for c in s)
+#
+# print(double_char("Hello World"))
 
-    # return ''.join(c * 2 for c in s)
 
-print(double_char("Hello World"))
+def is_pangram(s):
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    for st in letters:
+        if st not in s.lower():
+            return False
+    return True
+
+
+print(is_pangram("The quick, brown fox jumps over the lazy dog!"))
