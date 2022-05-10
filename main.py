@@ -666,27 +666,38 @@
 
 
 
-def is_valid_walk(walk):
-    time = 10
-    step = len(walk)
-    if step != time:
-        return False
-    else:
-        count_n, count_s, count_w, count_e = 0, 0, 0, 0
-        for i in walk:
-            if i == 'n':
-                count_n += 1
-            elif i == 's':
-                count_s += 1
-            elif i == 'w':
-                count_w += 1
-            elif i == 'e':
-                count_e += 1
-        if count_n == count_s and count_w == count_e:
-            return True
-        else:
-            return False
+# def is_valid_walk(walk):
+#     time = 10
+#     step = len(walk)
+#     if step != time:
+#         return False
+#     else:
+#         count_n, count_s, count_w, count_e = 0, 0, 0, 0
+#         for i in walk:
+#             if i == 'n':
+#                 count_n += 1
+#             elif i == 's':
+#                 count_s += 1
+#             elif i == 'w':
+#                 count_w += 1
+#             elif i == 'e':
+#                 count_e += 1
+#         if count_n == count_s and count_w == count_e:
+#             return True
+#         else:
+#             return False
+#
+#     # return len(walk) == 10 and walk.count('n') == walk.count('s') and walk.count('e') == walk.count('w')
+#
+# print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))
 
-    # return len(walk) == 10 and walk.count('n') == walk.count('s') and walk.count('e') == walk.count('w')
 
-print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))
+def count_by(x, n):
+    # arr = []
+    # for i in range(1, n + 1):
+    #     i *= x
+    #     arr.append(i)
+    # return arr
+    return [i * x for i in range(1, n + 1)]
+
+print(count_by(3, 10))
