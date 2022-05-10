@@ -654,12 +654,39 @@
 # print(double_char("Hello World"))
 
 
-def is_pangram(s):
-    letters = "abcdefghijklmnopqrstuvwxyz"
-    for st in letters:
-        if st not in s.lower():
+# def is_pangram(s):
+#     letters = "abcdefghijklmnopqrstuvwxyz"
+#     for st in letters:
+#         if st not in s.lower():
+#             return False
+#     return True
+#
+#
+# print(is_pangram("The quick, brown fox jumps over the lazy dog!"))
+
+
+
+def is_valid_walk(walk):
+    time = 10
+    step = len(walk)
+    if step != time:
+        return False
+    else:
+        count_n, count_s, count_w, count_e = 0, 0, 0, 0
+        for i in walk:
+            if i == 'n':
+                count_n += 1
+            elif i == 's':
+                count_s += 1
+            elif i == 'w':
+                count_w += 1
+            elif i == 'e':
+                count_e += 1
+        if count_n == count_s and count_w == count_e:
+            return True
+        else:
             return False
-    return True
 
+    # return len(walk) == 10 and walk.count('n') == walk.count('s') and walk.count('e') == walk.count('w')
 
-print(is_pangram("The quick, brown fox jumps over the lazy dog!"))
+print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))
