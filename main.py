@@ -703,23 +703,42 @@
 # print(count_by(3, 10))
 
 
-def count_positives_sum_negatives(arr):
-    # arr_new = []
-    # count_plus = 0
-    # a = 0
-    # if arr != []:
-    #     for i in arr:
-    #         if i > 0:
-    #             count_plus += 1
-    #         else:
-    #             a += i
-    #     arr_new.append(count_plus)
-    #     arr_new.append(a)
-    #     return arr_new
-    # else:
-    #     return arr_new
+# def count_positives_sum_negatives(arr):
+#     # arr_new = []
+#     # count_plus = 0
+#     # a = 0
+#     # if arr != []:
+#     #     for i in arr:
+#     #         if i > 0:
+#     #             count_plus += 1
+#     #         else:
+#     #             a += i
+#     #     arr_new.append(count_plus)
+#     #     arr_new.append(a)
+#     #     return arr_new
+#     # else:
+#     #     return arr_new
+#
+#     return [len([x for x in arr if x > 0])] + [sum(y for y in arr if y < 0)] if arr else []
+#
+#
+# print(count_positives_sum_negatives([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]))
 
-    return [len([x for x in arr if x > 0])] + [sum(y for y in arr if y < 0)] if arr else []
+
+def decrypt(s, n):
+    if not s: return s
+    o, l = len(s) // 2, list(s)
+    for _ in range(n):
+        l[1::2], l[::2] = l[:o], l[o:]
+    return ''.join(l)
 
 
-print(count_positives_sum_negatives([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]))
+def encrypt(s, n):
+    if not s: return s
+    for _ in range(n):
+        s = s[1::2] + s[::2]
+    return s
+
+
+print(decrypt("012345", 2))
+print(encrypt("135024", 2))
