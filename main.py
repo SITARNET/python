@@ -837,11 +837,25 @@
 # print(bmi(80, 1.80))
 
 
-def stray(arr):
-    arr.sort()
-    if arr[0] == arr[1]:
-        return arr[-1]
-    else:
-        return arr[0]
+# def stray(arr):
+#     arr.sort()
+#     if arr[0] == arr[1]:
+#         return arr[-1]
+#     else:
+#         return arr[0]
+#
+# print(stray([1, 1, 1, 1, 1, 1, 3]))
 
-print(stray([1, 1, 1, 1, 1, 1, 3]))
+
+def update_light(current):
+    # if current == 'green':
+    #     return 'yellow'
+    # elif current == 'yellow':
+    #     return 'red'
+    # elif current == 'red':
+    #     return 'green'
+
+    return {"green": "yellow", "yellow": "red", "red": "green"}[current]
+
+
+print(update_light('green'))
