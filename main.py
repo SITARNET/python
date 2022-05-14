@@ -725,20 +725,41 @@
 # print(count_positives_sum_negatives([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]))
 
 
-def decrypt(s, n):
-    if not s: return s
-    o, l = len(s) // 2, list(s)
-    for _ in range(n):
-        l[1::2], l[::2] = l[:o], l[o:]
-    return ''.join(l)
+# def decrypt(s, n):
+#     if not s: return s
+#     o, l = len(s) // 2, list(s)
+#     for _ in range(n):
+#         l[1::2], l[::2] = l[:o], l[o:]
+#     return ''.join(l)
+#
+#
+# def encrypt(s, n):
+#     if not s: return s
+#     for _ in range(n):
+#         s = s[1::2] + s[::2]
+#     return s
+#
+#
+# print(decrypt("012345", 2))
+# print(encrypt("135024", 2))
 
 
-def encrypt(s, n):
-    if not s: return s
-    for _ in range(n):
-        s = s[1::2] + s[::2]
-    return s
+# def find_even_index(array):
+#     for index in range(len(array)):
+#         if sum(array[:index]) == sum(array[index + 1:]):
+#             return index
+#     return -1
 
 
-print(decrypt("012345", 2))
-print(encrypt("135024", 2))
+def find_even_index(lst):
+    left_sum = 0
+    right_sum = sum(lst)
+    for i, a in enumerate(lst):
+        right_sum -= a
+        if left_sum == right_sum:
+            return i
+        left_sum += a
+    return -1
+
+
+print(find_even_index([10, -80, 10, 10, 15, 35, 20]))
