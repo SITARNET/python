@@ -744,22 +744,65 @@
 # print(encrypt("135024", 2))
 
 
-# def find_even_index(array):
-#     for index in range(len(array)):
-#         if sum(array[:index]) == sum(array[index + 1:]):
-#             return index
+# # def find_even_index(array):
+# #     for index in range(len(array)):
+# #         if sum(array[:index]) == sum(array[index + 1:]):
+# #             return index
+# #     return -1
+#
+#
+# def find_even_index(lst):
+#     left_sum = 0
+#     right_sum = sum(lst)
+#     for i, a in enumerate(lst):
+#         right_sum -= a
+#         if left_sum == right_sum:
+#             return i
+#         left_sum += a
 #     return -1
+#
+#
+# print(find_even_index([10, -80, 10, 10, 15, 35, 20]))
 
 
-def find_even_index(lst):
-    left_sum = 0
-    right_sum = sum(lst)
-    for i, a in enumerate(lst):
-        right_sum -= a
-        if left_sum == right_sum:
-            return i
-        left_sum += a
-    return -1
+# def likes(names):
+#     len_names = len(names)
+#     if len_names == 0:
+#         return 'no one likes this'
+#     elif len_names == 1:
+#         return '{} likes this'.format(names[0])
+#     elif len_names == 2:
+#         return '{} and {} like this'.format(names[0], names[1])
+#     elif len_names == 3:
+#         return '{}, {} and {} like this'.format(names[0], names[1], names[2])
+#     else:
+#         others = len_names - 2
+#         return '{}, {} and {} others like this'.format(names[0], names[1], others)
+#
+#
+# print(likes(['Max', 'John']))
 
 
-print(find_even_index([10, -80, 10, 10, 15, 35, 20]))
+def likes(names):
+    # make a dictionary d of all the possible answers. Keys are the respective number
+    # of people who liked it.
+
+    # {} indicate placeholders. They do not need any numbers but are simply replaced/formatted
+    # in the order the arguments in names are given to format
+    # {others} can be replaced by its name; below the argument "others = length - 2"
+    # is passed to str.format()
+    d = {
+        0: "no one likes this",
+        1: "{} likes this",
+        2: "{} and {} like this",
+        3: "{}, {} and {} like this",
+        4: "{}, {} and {others} others like this"
+    }
+    length = len(names)
+    # d[min(4, length)] insures that the appropriate string is called from the dictionary
+    # and subsequently returned. Min is necessary as len(names) may be > 4
+
+    # The * in *names ensures that the list names is blown up and that format is called
+    # as if each item in names was passed to format individually, i. e.
+    # format(names[0], names[1], .... , names[n], others = length - 2
+    return d[min(4, length)].format(*names, others=length - 2)
