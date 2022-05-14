@@ -808,11 +808,30 @@
 #     return d[min(4, length)].format(*names, others=length - 2)
 
 
-def sum_array(a):
-    if len(a) == 0:
-        return 0
-    else:
-        return sum(a)
+# def sum_array(a):
+#     if len(a) == 0:
+#         return 0
+#     else:
+#         return sum(a)
+#
+#
+# print(sum_array([1.1, 2.2, 3.3]))
 
 
-print(sum_array([1.1, 2.2, 3.3]))
+# def bmi(weight, height):
+#     bmi = weight / height**2
+#     if bmi <= 18.5:
+#         return "Underweight"
+#     elif 18.5 < bmi <= 25.0:
+#         return "Normal"
+#     elif 25.0 < bmi <= 30.0:
+#         return "Overweight"
+#     elif bmi > 30:
+#         return "Obese"
+
+def bmi(weight, height):
+    b = weight / height ** 2
+    return ['Underweight', 'Normal', 'Overweight', 'Obese'][(b > 30) + (b > 25) + (b > 18.5)]
+
+
+print(bmi(80, 1.80))
