@@ -829,9 +829,19 @@
 #     elif bmi > 30:
 #         return "Obese"
 
-def bmi(weight, height):
-    b = weight / height ** 2
-    return ['Underweight', 'Normal', 'Overweight', 'Obese'][(b > 30) + (b > 25) + (b > 18.5)]
+# def bmi(weight, height):
+#     b = weight / height ** 2
+#     return ['Underweight', 'Normal', 'Overweight', 'Obese'][(b > 30) + (b > 25) + (b > 18.5)]
+#
+#
+# print(bmi(80, 1.80))
 
 
-print(bmi(80, 1.80))
+def stray(arr):
+    arr.sort()
+    if arr[0] == arr[1]:
+        return arr[-1]
+    else:
+        return arr[0]
+
+print(stray([1, 1, 1, 1, 1, 1, 3]))
