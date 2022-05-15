@@ -890,7 +890,20 @@
 # print(remove_every_other([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
 
-def hero(bullets, dragons):
-    return (bullets / 2) >= dragons
+# def hero(bullets, dragons):
+#     return (bullets / 2) >= dragons
+#
+# print(hero(10, 5))
 
-print(hero(10, 5))
+
+def expression_matter(a, b, c):
+    q = a * (b + c)
+    w = a * b * c
+    e = a + b * c
+    r = (a + b) * c
+    t = a + b + c
+    y = a * b + c
+
+    return max([q, w, e, r])
+
+print(expression_matter(3, 3, 3))
