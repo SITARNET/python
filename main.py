@@ -909,16 +909,26 @@
 # print(expression_matter(3, 3, 3))
 
 
-def bouncing_ball(h, bounce, window):
-    if h != 0 and 1 > bounce > 0 and window < h:
-        count = 1
-        current = h * bounce
-        while current > window:
-            current *= bounce
-            count += 2
-        return count
+# def bouncing_ball(h, bounce, window):
+#     if h != 0 and 1 > bounce > 0 and window < h:
+#         count = 1
+#         current = h * bounce
+#         while current > window:
+#             current *= bounce
+#             count += 2
+#         return count
+#     else:
+#         return -1
+#
+#
+# print(bouncing_ball(3, 0.66, 1.5))
+
+
+def bool_to_word(boolean):
+    if boolean == True:
+        return 'Yes'
     else:
-        return -1
+        return 'No'
 
 
-print(bouncing_ball(3, 0.66, 1.5))
+print(bool_to_word(False))
