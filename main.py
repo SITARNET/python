@@ -847,15 +847,26 @@
 # print(stray([1, 1, 1, 1, 1, 1, 3]))
 
 
-def update_light(current):
-    # if current == 'green':
-    #     return 'yellow'
-    # elif current == 'yellow':
-    #     return 'red'
-    # elif current == 'red':
-    #     return 'green'
+# def update_light(current):
+#     # if current == 'green':
+#     #     return 'yellow'
+#     # elif current == 'yellow':
+#     #     return 'red'
+#     # elif current == 'red':
+#     #     return 'green'
+#
+#     return {"green": "yellow", "yellow": "red", "red": "green"}[current]
+#
+#
+# print(update_light('green'))
 
-    return {"green": "yellow", "yellow": "red", "red": "green"}[current]
+
+def delete_nth(order, max_e):
+    acc = []
+    for i in order:
+        if acc.count(i) < max_e:
+            acc.append(i)
+    return acc
 
 
-print(update_light('green'))
+print(delete_nth([20, 37, 20, 21, 20], 1))
