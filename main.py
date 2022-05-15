@@ -871,9 +871,20 @@
 #
 # print(delete_nth([20, 37, 20, 21, 20], 1))
 
-import math
+# import math
+#
+# def cockroach_speed(s):
+#     return math.floor(s / 0.036)
+#
+# print(cockroach_speed(1.08))
 
-def cockroach_speed(s):
-    return math.floor(s / 0.036)
 
-print(cockroach_speed(1.08))
+def remove_every_other(my_list):
+    acc = []
+    for i, a in enumerate(my_list):
+        if i % 2 == 0:
+            acc.append(a)
+    return acc
+
+
+print(remove_every_other([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
