@@ -879,12 +879,18 @@
 # print(cockroach_speed(1.08))
 
 
-def remove_every_other(my_list):
-    acc = []
-    for i, a in enumerate(my_list):
-        if i % 2 == 0:
-            acc.append(a)
-    return acc
+# def remove_every_other(my_list):
+#     acc = []
+#     for i, a in enumerate(my_list):
+#         if i % 2 == 0:
+#             acc.append(a)
+#     return acc
+#
+#
+# print(remove_every_other([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
 
-print(remove_every_other([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+def hero(bullets, dragons):
+    return (bullets / 2) >= dragons
+
+print(hero(10, 5))
