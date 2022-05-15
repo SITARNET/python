@@ -861,12 +861,19 @@
 # print(update_light('green'))
 
 
-def delete_nth(order, max_e):
-    acc = []
-    for i in order:
-        if acc.count(i) < max_e:
-            acc.append(i)
-    return acc
+# def delete_nth(order, max_e):
+#     acc = []
+#     for i in order:
+#         if acc.count(i) < max_e:
+#             acc.append(i)
+#     return acc
+#
+#
+# print(delete_nth([20, 37, 20, 21, 20], 1))
 
+import math
 
-print(delete_nth([20, 37, 20, 21, 20], 1))
+def cockroach_speed(s):
+    return math.floor(s / 0.036)
+
+print(cockroach_speed(1.08))
