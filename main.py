@@ -896,14 +896,29 @@
 # print(hero(10, 5))
 
 
-def expression_matter(a, b, c):
-    q = a * (b + c)
-    w = a * b * c
-    e = a + b * c
-    r = (a + b) * c
-    t = a + b + c
-    y = a * b + c
+# def expression_matter(a, b, c):
+#     q = a * (b + c)
+#     w = a * b * c
+#     e = a + b * c
+#     r = (a + b) * c
+#     t = a + b + c
+#     y = a * b + c
+#
+#     return max([q, w, e, r])
+#
+# print(expression_matter(3, 3, 3))
 
-    return max([q, w, e, r])
 
-print(expression_matter(3, 3, 3))
+def bouncing_ball(h, bounce, window):
+    if h != 0 and 1 > bounce > 0 and window < h:
+        count = 1
+        current = h * bounce
+        while current > window:
+            current *= bounce
+            count += 2
+        return count
+    else:
+        return -1
+
+
+print(bouncing_ball(3, 0.66, 1.5))
