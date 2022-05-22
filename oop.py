@@ -68,23 +68,92 @@
 # pt.y = 10
 # pt.setCoords()
 
+# class Point:
+#     def __init__(self, x = 0, y = 0): # конструктор
+#         self.x = x
+#         self.y = y
+#
+#     def __del__(self): # деструктор удаляет экземпляры класса, если на него ничего не ссылаеться
+#         print("Удаление экземпляра: " + self.__str__())
+#
+#     x = 1; y = 1
+#     def setCoords(self, x, y): # создаём через self локальные переменные для конкретного экземпояра класс
+#         self.x = x
+#         self.y = y
+#
+# pt = Point()
+# # pt1 = Point(5)
+# # pt2 = Point(5, 10)
+# # # pt.setCoords(5, 10) # => Point.setCoords(pt, 5, 10)
+# # # print(pt.__dict__)
+# # print(pt.__dict__, pt1.__dict__, pt2.__dict__, sep='\n')
+# # pt = 0
+
+
 class Point:
-    def __init__(self, x = 0, y = 0): # конструктор
-        self.x = x
-        self.y = y
+    WIDTH = 5
 
-    def __del__(self): # деструктор удаляет экземпляры класса, если на него ничего не ссылаеться
-        print("Удаление экземпляра: " + self.__str__())
+    # __slots__ = ["__x", "__y"] # дабавляет разрешонные свойства
 
-    x = 1; y = 1
-    def setCoords(self, x, y): # создаём через self локальные переменные для конкретного экземпояра класс
-        self.x = x
-        self.y = y
+    def __init__(self, x = 0, y = 0):
+        self.__x = x
+        self.__y = y
 
-pt = Point()
-# pt1 = Point(5)
-# pt2 = Point(5, 10)
-# # pt.setCoords(5, 10) # => Point.setCoords(pt, 5, 10)
-# # print(pt.__dict__)
-# print(pt.__dict__, pt1.__dict__, pt2.__dict__, sep='\n')
-# pt = 0
+# x - публичное свойство "public"
+# _x - можно обращаться только внутри класса и во всех его дочерних классах "protected"
+# __x - можно обращаться только внутри коасса "private"
+
+    def __checkValue(x): # делаем проверку через приватный метод
+        if isinstance(x, int) or isinstance(x, float):
+            return True
+        return False
+
+    def setCoords(self, x, y): # публичный метод
+        if Point.__checkValue(x) and Point.__checkValue(y):
+            self.__x = x
+            self.__y = y
+        else:
+            print("Координаты должны быть числами")
+
+    def getCoords(self): # чтобы вернуть, увидеть результат
+        return self.__x, self.__y
+
+    def __getattribute__(self, item): # перегрузка метода
+        if item == "_Point__x":
+            return "Частная переменная"
+        else:
+            return object.__getattribute__(self, item)
+
+    def __setattr__(self, key, value):
+        if key == "WIDTH": # если происходит изменение свойства WIDTH
+            raise AttributeError
+        else:
+            self.__dict__[key] = value # для других свойств можем менять
+
+    def __getattr__(self, item): # вызываеться если несуществует свойство
+        print("__getattr__" + item)
+
+    def __delattr__(self, item): # вызываеться если удалено свойство
+        print("__delattr__" + item)
+
+
+pt = Point(1, 2)
+# print(pt.getCoords())
+# pt.setCoords("10", 20)
+# print(pt.getCoords())
+# можно обратиться к приватным методам и атрибутам  _Имя класса__имя переменной или _Имя класса__имя метода
+# print(pt._Point__x)
+# Point._Point__checkValue(4)
+# но так работать нельзя
+
+# __setattr__(self, key, value) - автоматически вызываеться при изменении свойства key класса
+# __getattribute__(self, item) - автоматически вызываеться при получении свойства класса с именем item
+# __getattr__(self, item) - автоматически вызывается при получении несуществующего свойства item класса
+# __delattr__(self, item) - автоматически вызываеться при удалении свойства item (не выжно: существует оно или нет)
+
+# pt.WIDTH = 5
+
+pt.zzz # __getattr__zzz
+pt.z = 1
+del pt.z # __delattr__z
+
