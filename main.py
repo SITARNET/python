@@ -924,11 +924,12 @@
 # print(bouncing_ball(3, 0.66, 1.5))
 
 
-def bool_to_word(boolean):
-    if boolean == True:
-        return 'Yes'
-    else:
-        return 'No'
+# def bool_to_word(boolean):
+#     if boolean == True:
+#         return 'Yes'
+#     else:
+#         return 'No'
+#
+#
+# print(bool_to_word(False))
 
-
-print(bool_to_word(False))
