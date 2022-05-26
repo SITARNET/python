@@ -1,3 +1,5 @@
+# 1. OOP
+
 # class Point:
 #     "Класс Point"
 #     x = 1 # статический атрибут
@@ -57,6 +59,7 @@
 # delattr(pt2, "z")
 # print(pt2.__dict__)
 
+# 2. OOP
 
 # class Point:
 #     x = 1; y = 1
@@ -89,6 +92,7 @@
 # # print(pt.__dict__, pt1.__dict__, pt2.__dict__, sep='\n')
 # # pt = 0
 
+# 3. OOP
 
 # class Point:
 #     WIDTH = 5
@@ -157,87 +161,117 @@
 # pt.z = 1
 # del pt.z # __delattr__z
 
-class NoDataDescr:
-    def __set_name__(self, owner, name):
-        self.__name = name
+# 4. OOP
 
-    def __get__(self, instance, value): # только один метод get - считывание
-        return "NoDataDescr __get__"
+# class NoDataDescr:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, value): # только один метод get - считывание
+#         return "NoDataDescr __get__"
+#
+#
+# class CoordValue:
+#     def __set_name__(self, owner, name):
+#         print(name)
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         # return self.__value
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         # self.__value = value
+#         instance.__dict__[self.__name] = value
+#
+#     # def __delete__(self, obj):
+#     #     del self.__value
+#
+# class Point:
+#     noData = NoDataDescr()
+#     coordX = CoordValue()
+#     coordY = CoordValue()
+#
+#     def __init__(self, x=0, y=0):
+#         self.coordX = x
+#         self.coordY = y
+#
+#     # def __chechVaue(x):
+#     #     if isinstance(x, int) or isinstance(x, float):
+#     #         return True
+#     #     return False
+#     #
+#     # # def __getCoordX(self):
+#     # #     # print("Вызов __getCoordX")
+#     # #     return self.__x
+#     #
+#     # @property # декоратор
+#     # def coordX(self):
+#     #     return self.__x
+#     #
+#     # # def __setCoordX(self, x):
+#     # #     if Point.__chechVaue(x):
+#     # #         # print("Вызов __setCoordX")
+#     # #         self.__x = x
+#     # #     else:
+#     # #         raise ValueError("Неверный формат данных")
+#     #
+#     # @coordX.setter
+#     # def coordX(self, x):
+#     #     if Point.__chechVaue(x):
+#     #         self.__x = x
+#     #     else:
+#     #         raise ValueError("Неверный формат данных")
+#     #
+#     # # def __delCoordX(self):
+#     # #     # print("Удаление свойства")
+#     # #     del self.__x
+#     #
+#     # @coordX.deleter
+#     # def coordX(self):
+#     #     del self.__x
+#     #
+#     # # coordX = property(__getCoordX, __setCoordX, __delCoordX)
+#
+#
+# pt = Point(1, 2)
+# print(pt.coordX, pt.coordY)
+# # pt.coordX = 100 # запись значения
+# # x = pt.coordX # чтение значения
+# # print(x)
+# # del pt.coordX # удаляет свойство х
+# # pt.coordX = 7
+# # pt.coordX
+#
+# pt2 = Point(5, 10)
+# print(pt2.coordX, pt2.coordY)
+#
+# pt.noData = "hello"
 
-
-class CoordValue:
-    def __set_name__(self, owner, name):
-        print(name)
-        self.__name = name
-
-    def __get__(self, instance, owner):
-        # return self.__value
-        return instance.__dict__[self.__name]
-
-    def __set__(self, instance, value):
-        # self.__value = value
-        instance.__dict__[self.__name] = value
-
-    # def __delete__(self, obj):
-    #     del self.__value
+# 5. OOP
 
 class Point:
-    noData = NoDataDescr()
-    coordX = CoordValue()
-    coordY = CoordValue()
+    __count = 0
+    __instance = None
+
+    def __new__(cls, *args, **kwargs): # singleton - создание одного экземпляра класса
+        if not isinstance(cls.__instance, cls):
+            cls.__instance = super(Point, cls).__new__(cls)
+        else:
+            print("Экземпляр класса Point уже создан!")
 
     def __init__(self, x=0, y=0):
+        Point.__count += 1
         self.coordX = x
         self.coordY = y
 
-    # def __chechVaue(x):
-    #     if isinstance(x, int) or isinstance(x, float):
-    #         return True
-    #     return False
-    #
-    # # def __getCoordX(self):
-    # #     # print("Вызов __getCoordX")
-    # #     return self.__x
-    #
-    # @property # декоратор
-    # def coordX(self):
-    #     return self.__x
-    #
-    # # def __setCoordX(self, x):
-    # #     if Point.__chechVaue(x):
-    # #         # print("Вызов __setCoordX")
-    # #         self.__x = x
-    # #     else:
-    # #         raise ValueError("Неверный формат данных")
-    #
-    # @coordX.setter
-    # def coordX(self, x):
-    #     if Point.__chechVaue(x):
-    #         self.__x = x
-    #     else:
-    #         raise ValueError("Неверный формат данных")
-    #
-    # # def __delCoordX(self):
-    # #     # print("Удаление свойства")
-    # #     del self.__x
-    #
-    # @coordX.deleter
-    # def coordX(self):
-    #     del self.__x
-    #
-    # # coordX = property(__getCoordX, __setCoordX, __delCoordX)
+    @staticmethod
+    def getCount(): # статический метод, self не надо
+        return Point.__count
 
-
-pt = Point(1, 2)
-print(pt.coordX, pt.coordY)
-# pt.coordX = 100 # запись значения
-# x = pt.coordX # чтение значения
-# print(x)
-# del pt.coordX # удаляет свойство х
-# pt.coordX = 7
-# pt.coordX
-
-pt2 = Point(5, 10)
-print(pt2.coordX, pt2.coordY)
-
-pt.noData = "hello"
+pt = Point()
+pt1 = Point()
+pt2 = Point()
+# # Point.getCount(1) # 3
+# print(pt.getCount(), Point.getCount()) # 3 3
+print(id(pt), id(pt1), id(pt2), sep="\n")
