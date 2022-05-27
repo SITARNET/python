@@ -250,28 +250,66 @@
 
 # 5. OOP
 
+# class Point:
+#     __count = 0
+#     __instance = None
+#
+#     def __new__(cls, *args, **kwargs): # singleton - создание одного экземпляра класса
+#         if not isinstance(cls.__instance, cls):
+#             cls.__instance = super(Point, cls).__new__(cls)
+#         else:
+#             print("Экземпляр класса Point уже создан!")
+#
+#     def __init__(self, x=0, y=0):
+#         Point.__count += 1
+#         self.coordX = x
+#         self.coordY = y
+#
+#     @staticmethod
+#     def getCount(): # статический метод, self не надо
+#         return Point.__count
+#
+# pt = Point()
+# pt1 = Point()
+# pt2 = Point()
+# # # Point.getCount(1) # 3
+# # print(pt.getCount(), Point.getCount()) # 3 3
+# print(id(pt), id(pt1), id(pt2), sep="\n")
+
+# 6. OOP
+
 class Point:
-    __count = 0
-    __instance = None
-
-    def __new__(cls, *args, **kwargs): # singleton - создание одного экземпляра класса
-        if not isinstance(cls.__instance, cls):
-            cls.__instance = super(Point, cls).__new__(cls)
-        else:
-            print("Экземпляр класса Point уже создан!")
-
     def __init__(self, x=0, y=0):
-        Point.__count += 1
-        self.coordX = x
-        self.coordY = y
+        self.__x = x
+        self.__y = y
 
-    @staticmethod
-    def getCount(): # статический метод, self не надо
-        return Point.__count
+    def __str__(self):
+        return f"({self.__x}, {self.__y})"
 
-pt = Point()
-pt1 = Point()
-pt2 = Point()
-# # Point.getCount(1) # 3
-# print(pt.getCount(), Point.getCount()) # 3 3
-print(id(pt), id(pt1), id(pt2), sep="\n")
+class Prop:
+    def __init__(self, sp: Point, ep: Point, color: str = "red", width:int = 1):
+        self._sp = sp
+        self._ep = ep
+        self._color = color
+        self.__width = width
+
+    def getWidth(self):
+        return self.__width
+
+class Line(Prop): # наследует от Prop
+    def drawline(self):
+        print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
+
+class Rect(Prop): # наследует от Prop
+    def drawRect(self):
+        print(f"Рисование треугольника: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
+
+# print(isinstance(Point, object)) # True
+
+l = Line(Point(1, 2), Point(10, 20))
+l.drawline()
+
+r = Rect(Point(30, 40), Point(70, 80))
+r.drawRect()
+print(l.__dict__)
+l.drawline()
