@@ -286,6 +286,17 @@ class Point:
     def __str__(self):
         return f"({self.__x}, {self.__y})"
 
+    def isDigit(self):
+        if (isinstance(self.__x, int) or isinstance(self.__x, float)) and \
+                (isinstance(self.__y, int) or isinstance(self.__y, float)):
+            return True
+        return False
+
+    def isInt(self):
+        if isinstance(self.__x, int) and isinstance(self.__y, int):
+            return True
+        return False
+
 class Prop:
     def __init__(self, sp: Point, ep: Point, color: str = "red", width:int = 1):
         self._sp = sp
@@ -296,20 +307,87 @@ class Prop:
     def getWidth(self):
         return self.__width
 
-class Line(Prop): # наследует от Prop
-    def drawline(self):
-        print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
+    def setCoords(self, sp, ep): # меняет координаты линии, после того как она задана
+        if sp.isDigit() and ep.isDigit(): # проверка на int, float
+            self._sp = sp
+            self._ep = ep
+        else:
+            print("Координаты должны быть числами")
 
-class Rect(Prop): # наследует от Prop
-    def drawRect(self):
+# class Line(Prop): # наследует от Prop
+#     def drawline(self):
+#         print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
+#
+#     def __setOneCoord(self, sp):
+#         if sp.isInt():
+#             self._sp = sp
+#         else:
+#             print("Координата должна быть целочисленной")
+#
+#     def __setTwoCoords(self, sp, ep):
+#         if sp.isInt() and ep.isInt():
+#             # self._sp = sp
+#             # self._ep = ep
+#             Prop.setCoords(self, sp, ep)
+#         else:
+#             print("Координаты должны быть целочисленными")
+#
+#     def setCoords(self, sp: Point, ep: Point = None): # если один аргумент
+#         if ep is None:
+#             # if sp.isInt():
+#             #     self._sp = sp
+#             # else:
+#             #     print("Координата должна быть целочисленной")
+#             self.__setOneCoord(sp)
+#         else:
+#             # if sp.isInt() and ep.isInt():
+#             #     # self._sp = sp
+#             #     # self._ep = ep
+#             #     Prop.setCoords(self, sp, ep)
+#             # else:
+#             #     print("Координаты должны быть целочисленными")
+#             self.__setTwoCoords(sp, ep)
+    def draw(self):
+        raise NotImplementedError("В дочернем классе должен быть определён метож draw()")
+
+class Line(Prop):
+    pass
+    # def draw(self):
+    #     print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
+
+class Rect(Prop):
+    def draw(self):
         print(f"Рисование треугольника: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
+
+class Ellipse(Prop):
+    def draw(self):
+        print(f"Рисование эллипса: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
+
+# class Rect(Prop): # наследует от Prop
+#     def drawRect(self):
+#         print(f"Рисование треугольника: {self._sp}, {self._ep}, {self._color}, {self.getWidth()}")
 
 # print(isinstance(Point, object)) # True
 
-l = Line(Point(1, 2), Point(10, 20))
-l.drawline()
+# l = Line(Point(1, 2), Point(10, 20))
+# l.drawline()
 
-r = Rect(Point(30, 40), Point(70, 80))
-r.drawRect()
-print(l.__dict__)
-l.drawline()
+# r = Rect(Point(30, 40), Point(70, 80))
+# r.drawRect()
+# print(l.__dict__)
+# l.drawline()
+
+# l.setCoords(Point(10, 20), Point(100, 200))
+# l.drawline()
+# l.setCoords(Point(-10, -20))
+# l.drawline()
+
+figs = []
+figs.append(Line(Point(0, 0), Point(10, 10)))
+figs.append(Line(Point(10, 10), Point(20, 10)))
+figs.append(Rect(Point(50, 50), Point(100, 100)))
+figs.append(Ellipse(Point(-10, -10), Point(10, 10)))
+
+for f in figs:
+    f.draw()
+
