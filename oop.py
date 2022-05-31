@@ -391,34 +391,162 @@
 # for f in figs:
 #     f.draw()
 
-class Point:
-    def __init__(self, x=0, y=0): # конструктор
-        self.__x = x
-        self.__y = y
+# 8. OOP
 
-    def __str__(self): # строковое представление объекта
-        return f"({self.__x}, {self.__y})"
+# class Point:
+#     def __init__(self, x=0, y=0): # конструктор
+#         self.__x = x
+#         self.__y = y
+#
+#     def __str__(self): # строковое представление объекта
+#         return f"({self.__x}, {self.__y})"
+#
+# class Styles:
+#     def __init__(self):
+#         print("Конструктор Styles")
+#         super().__init__() # будет вызвано ровно один раз
+#
+# class Pos:
+#     def __init__(self):
+#         print("Конструктор Pos")
+#         super().__init__() # будет вызвано ровно один раз
+#
+# class Line(Pos, Styles):
+#     def __init__(self, sp: Point, ep: Point, color="red", width=1):
+#         self._sp = sp
+#         self._ep = ep
+#         self._color = color
+#         self._width = width
+#
+#     def draw(self):
+#         print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self._width}")
+#
+# l = Line( Point(10, 10), Point(100, 100), "green", 5)
+# l.draw()
+# print(Line.__mro__) # список наследования
 
-class Styles:
-    def __init__(self):
-        print("Конструктор Styles")
-        super().__init__() # будет вызвано ровно один раз
+# 9. OOP
 
-class Pos:
-    def __init__(self):
-        print("Конструктор Pos")
-        super().__init__() # будет вызвано ровно один раз
+# class Clock
+# секунды отсчитываются от 00:00 часов ночи;
+# чмсло секунд не должно превышать значения: 24*60*60 = 86400
+# __DAY = 86400 - число секунд в дне
+# метод getFormatTime() - взврашает указанное время в формате: 01:32:02
+# s = self.__secs % 60 - секунды
+# m = (self.__secs // 60) % 60 - минуты
+# h = (self.__secs // 3600) % 24 - часы
 
-class Line(Pos, Styles):
-    def __init__(self, sp: Point, ep: Point, color="red", width=1):
-        self._sp = sp
-        self._ep = ep
-        self._color = color
-        self._width = width
+class Clock:
+    __DAY = 86400
+    def __init__(self, secs:int):
+        if not isinstance(secs, int):
+            raise ValueError("Секунды должны быть целым числом")
 
-    def draw(self):
-        print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self._width}")
+        self.__secs = secs % self.__DAY # не будет привышать 86400
 
-l = Line( Point(10, 10), Point(100, 100), "green", 5)
-l.draw()
-print(Line.__mro__) # список наследования
+    def getFormatTime(self):
+        s = self.__secs % 60
+        m = (self.__secs // 60) % 60
+        h = (self.__secs // 3600) % 24
+        return f"{Clock.__getForm(h)}:{Clock.__getForm(m)}:{Clock.__getForm(s)}"
+
+    @staticmethod
+    def __getForm(x):
+        return str(x) if x > 9 else "0"+str(x)
+
+    def getSeconds(self):
+        return self.__secs
+
+    def __add__(self, other):
+        if not isinstance(other, Clock):
+            raise ArithmeticError("Первый операнд должен быть типом Clock")
+
+        return Clock(self.__secs + other.getSeconds())
+
+    def __iadd__(self, other):
+        if not isinstance(other, Clock):
+            raise ArithmeticError("Первый операнд должен быть типом Clock")
+
+        self.__secs += other.getSeconds()
+        return self
+
+    def __eq__(self, other):
+        # if self.__secs == other.getSeconds():
+        #     return True
+        # return False
+        return self.__secs == other.getSeconds()
+
+    def __nq__(self, other):
+        return not self.__eq__(other)
+
+    def __getitem__(self, item):
+        if not isinstance(item, str):
+            raise ValueError("Ключ должен быть строкой")
+
+        if item == "hour":
+            return (self.__secs // 3600) % 24
+        if item == "min":
+            return (self.__secs // 60) % 60
+        if item == "sec":
+            return self.__secs % 60
+
+        return "Неверный ключ"
+
+    def __setitem__(self, key, value):
+        if not isinstance(key, str):
+            raise ValueError("Ключ должен быть строкой")
+        if not isinstance(value, int):
+            raise ValueError("Значение должно быть целым числом")
+
+        s = self.__secs % 60
+        m = (self.__secs // 60) % 60
+        h = (self.__secs // 3600) % 24
+
+        if key == "hour":
+            self.__secs = s + 60 * m + value * 3600
+        elif key == "min":
+            self.__secs = s + 60 * value + h * 3600
+        elif key == "sec":
+            self.__secs = value + 60 * m + h * 3600
+
+c1 = Clock(100) # экземпляр класса
+c2 = Clock(100)
+c3 = Clock(300)
+# c3 = c1 + c2 # TypeError: unsupported operand type(s) for +: 'Clock' and 'Clock'
+# c3 = c1 + c2
+# print(c3.getFormatTime())
+# c3 = c1 +c2 -> __add__(self, other) -> c3 = c1.__add__(c2)
+# c1 += c2 -> __iadd(self, other) -> c1.__iadd__(c2)
+# c1 += c2 + c3
+# print(c1.getFormatTime())
+
+# x+y -> __add__(self, other)          x+=y -> __iadd__(self, other)
+# x-y -> __sub__(self, other)          x-=y -> __isub__(self, other)
+# x*y -> __mul__(self, other)          x*=y -> __imul__(self, other)
+# x/y -> __truediv__(self, other)      x/=y -> __itruediv__(self, other)
+# x//y -> __floordiv__(self, other)    x//=y -> __ifloordiv__(self, other)
+# x%y -> __mod__(self, other)          x%=y -> __imod__(self, other)
+
+if c1 == c2:
+    print("Времена равны")
+
+if c1 != c3:
+    print("Времена не равны")
+
+# x == y -> __eq__(self, other)
+# x != y -> __nq__(self, other)
+# x < y -> __lt__(self, other)
+# x <= y -> __le__(self, other)
+# x > y -> __gt__(self, other)
+# x >= y -> __ge__(self, other)
+
+# __getitem(self, item)
+# __setitem(self, key, value) - доступ к объектам по ключу
+
+c1["hour"] = 10 # __setItem(self, key, item) -> 10 1 40
+print(c1["hour"], c1["min"], c1["sec"]) # __getItem__(self, item)
+
+
+
+
+
