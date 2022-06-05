@@ -425,126 +425,251 @@
 # l.draw()
 # print(Line.__mro__) # список наследования
 
-# 9. OOP
+# # 9. OOP
+#
+# # class Clock
+# # секунды отсчитываются от 00:00 часов ночи;
+# # чмсло секунд не должно превышать значения: 24*60*60 = 86400
+# # __DAY = 86400 - число секунд в дне
+# # метод getFormatTime() - взврашает указанное время в формате: 01:32:02
+# # s = self.__secs % 60 - секунды
+# # m = (self.__secs // 60) % 60 - минуты
+# # h = (self.__secs // 3600) % 24 - часы
+#
+# class Clock:
+#     __DAY = 86400
+#     def __init__(self, secs:int):
+#         if not isinstance(secs, int):
+#             raise ValueError("Секунды должны быть целым числом")
+#
+#         self.__secs = secs % self.__DAY # не будет привышать 86400
+#
+#     def getFormatTime(self):
+#         s = self.__secs % 60
+#         m = (self.__secs // 60) % 60
+#         h = (self.__secs // 3600) % 24
+#         return f"{Clock.__getForm(h)}:{Clock.__getForm(m)}:{Clock.__getForm(s)}"
+#
+#     @staticmethod
+#     def __getForm(x):
+#         return str(x) if x > 9 else "0"+str(x)
+#
+#     def getSeconds(self):
+#         return self.__secs
+#
+#     def __add__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Первый операнд должен быть типом Clock")
+#
+#         return Clock(self.__secs + other.getSeconds())
+#
+#     def __iadd__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Первый операнд должен быть типом Clock")
+#
+#         self.__secs += other.getSeconds()
+#         return self
+#
+#     def __eq__(self, other):
+#         # if self.__secs == other.getSeconds():
+#         #     return True
+#         # return False
+#         return self.__secs == other.getSeconds()
+#
+#     def __nq__(self, other):
+#         return not self.__eq__(other)
+#
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#
+#         if item == "hour":
+#             return (self.__secs // 3600) % 24
+#         if item == "min":
+#             return (self.__secs // 60) % 60
+#         if item == "sec":
+#             return self.__secs % 60
+#
+#         return "Неверный ключ"
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if not isinstance(value, int):
+#             raise ValueError("Значение должно быть целым числом")
+#
+#         s = self.__secs % 60
+#         m = (self.__secs // 60) % 60
+#         h = (self.__secs // 3600) % 24
+#
+#         if key == "hour":
+#             self.__secs = s + 60 * m + value * 3600
+#         elif key == "min":
+#             self.__secs = s + 60 * value + h * 3600
+#         elif key == "sec":
+#             self.__secs = value + 60 * m + h * 3600
+#
+# c1 = Clock(100) # экземпляр класса
+# c2 = Clock(100)
+# c3 = Clock(300)
+# # c3 = c1 + c2 # TypeError: unsupported operand type(s) for +: 'Clock' and 'Clock'
+# # c3 = c1 + c2
+# # print(c3.getFormatTime())
+# # c3 = c1 +c2 -> __add__(self, other) -> c3 = c1.__add__(c2)
+# # c1 += c2 -> __iadd(self, other) -> c1.__iadd__(c2)
+# # c1 += c2 + c3
+# # print(c1.getFormatTime())
+#
+# # x+y -> __add__(self, other)          x+=y -> __iadd__(self, other)
+# # x-y -> __sub__(self, other)          x-=y -> __isub__(self, other)
+# # x*y -> __mul__(self, other)          x*=y -> __imul__(self, other)
+# # x/y -> __truediv__(self, other)      x/=y -> __itruediv__(self, other)
+# # x//y -> __floordiv__(self, other)    x//=y -> __ifloordiv__(self, other)
+# # x%y -> __mod__(self, other)          x%=y -> __imod__(self, other)
+#
+# if c1 == c2:
+#     print("Времена равны")
+#
+# if c1 != c3:
+#     print("Времена не равны")
+#
+# # x == y -> __eq__(self, other)
+# # x != y -> __nq__(self, other)
+# # x < y -> __lt__(self, other)
+# # x <= y -> __le__(self, other)
+# # x > y -> __gt__(self, other)
+# # x >= y -> __ge__(self, other)
+#
+# # __getitem(self, item)
+# # __setitem(self, key, value) - доступ к объектам по ключу
+#
+# c1["hour"] = 10 # __setItem(self, key, item) -> 10 1 40
+# print(c1["hour"], c1["min"], c1["sec"]) # __getItem__(self, item)
 
-# class Clock
-# секунды отсчитываются от 00:00 часов ночи;
-# чмсло секунд не должно превышать значения: 24*60*60 = 86400
-# __DAY = 86400 - число секунд в дне
-# метод getFormatTime() - взврашает указанное время в формате: 01:32:02
-# s = self.__secs % 60 - секунды
-# m = (self.__secs // 60) % 60 - минуты
-# h = (self.__secs // 3600) % 24 - часы
+# 10. OOP
 
-class Clock:
-    __DAY = 86400
-    def __init__(self, secs:int):
-        if not isinstance(secs, int):
-            raise ValueError("Секунды должны быть целым числом")
+class CoordError(Exception): # своё исключение
+    pass
 
-        self.__secs = secs % self.__DAY # не будет привышать 86400
+class ImageXIterator:
+    def __init__(self, img, y: int):
+        self.__limit = img.width
+        self.__y = y
+        self.__img = img
+        self.__x = 0
 
-    def getFormatTime(self):
-        s = self.__secs % 60
-        m = (self.__secs // 60) % 60
-        h = (self.__secs // 3600) % 24
-        return f"{Clock.__getForm(h)}:{Clock.__getForm(m)}:{Clock.__getForm(s)}"
-
-    @staticmethod
-    def __getForm(x):
-        return str(x) if x > 9 else "0"+str(x)
-
-    def getSeconds(self):
-        return self.__secs
-
-    def __add__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Первый операнд должен быть типом Clock")
-
-        return Clock(self.__secs + other.getSeconds())
-
-    def __iadd__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Первый операнд должен быть типом Clock")
-
-        self.__secs += other.getSeconds()
+    def __iter__(self):
         return self
 
-    def __eq__(self, other):
-        # if self.__secs == other.getSeconds():
-        #     return True
-        # return False
-        return self.__secs == other.getSeconds()
+    def __next__(self):
+        if self.__x >= self.__limit:
+            raise StopIteration
 
-    def __nq__(self, other):
-        return not self.__eq__(other)
+        self.__x += 1
+        return self.__img[self.__x-1, self.__y]
 
-    def __getitem__(self, item):
-        if not isinstance(item, str):
-            raise ValueError("Ключ должен быть строкой")
+class ImageYIterator:
+    def __init__(self, img):
+        self.__limit = img.height
+        self.__img = img
+        self.__y = 0
 
-        if item == "hour":
-            return (self.__secs // 3600) % 24
-        if item == "min":
-            return (self.__secs // 60) % 60
-        if item == "sec":
-            return self.__secs % 60
+    def __iter__(self):
+        return self
 
-        return "Неверный ключ"
+    def __next__(self):
+        if self.__y >= self.__limit:
+            raise StopIteration
 
-    def __setitem__(self, key, value):
-        if not isinstance(key, str):
-            raise ValueError("Ключ должен быть строкой")
-        if not isinstance(value, int):
-            raise ValueError("Значение должно быть целым числом")
+        self.__y += 1
+        return ImageXIterator(self.__img, self.__y - 1)
 
-        s = self.__secs % 60
-        m = (self.__secs // 60) % 60
-        h = (self.__secs // 3600) % 24
+class Image:
+    def __init__(self, width, height, background="_"):
+        self.__background = background
+        self.__pixels = {}
+        self.__width = width
+        self.__height = height
+        self.__colors = {self.__background}
 
-        if key == "hour":
-            self.__secs = s + 60 * m + value * 3600
-        elif key == "min":
-            self.__secs = s + 60 * value + h * 3600
-        elif key == "sec":
-            self.__secs = value + 60 * m + h * 3600
+    @property # будет возвращать ширину
+    def width(self):
+        return self.__width
 
-c1 = Clock(100) # экземпляр класса
-c2 = Clock(100)
-c3 = Clock(300)
-# c3 = c1 + c2 # TypeError: unsupported operand type(s) for +: 'Clock' and 'Clock'
-# c3 = c1 + c2
-# print(c3.getFormatTime())
-# c3 = c1 +c2 -> __add__(self, other) -> c3 = c1.__add__(c2)
-# c1 += c2 -> __iadd(self, other) -> c1.__iadd__(c2)
-# c1 += c2 + c3
-# print(c1.getFormatTime())
+    @width.setter # будет устанавливать ширину
+    def width(self, width):
+        self.__width = width
 
-# x+y -> __add__(self, other)          x+=y -> __iadd__(self, other)
-# x-y -> __sub__(self, other)          x-=y -> __isub__(self, other)
-# x*y -> __mul__(self, other)          x*=y -> __imul__(self, other)
-# x/y -> __truediv__(self, other)      x/=y -> __itruediv__(self, other)
-# x//y -> __floordiv__(self, other)    x//=y -> __ifloordiv__(self, other)
-# x%y -> __mod__(self, other)          x%=y -> __imod__(self, other)
+    @property  # будет возвращать высоту
+    def height(self):
+        return self.__height
 
-if c1 == c2:
-    print("Времена равны")
+    @height.setter  # будет устанавливать высоту
+    def height(self, height):
+        self.__height = height
 
-if c1 != c3:
-    print("Времена не равны")
+    def __checkCoord(self, coord):
+        if not isinstance(coord, tuple) or len(coord) != 2:
+            raise CoordError("Координаты точки должны быть двухмерным кортежем")
 
-# x == y -> __eq__(self, other)
-# x != y -> __nq__(self, other)
-# x < y -> __lt__(self, other)
-# x <= y -> __le__(self, other)
-# x > y -> __gt__(self, other)
-# x >= y -> __ge__(self, other)
+        if not (0 <= coord[0] < self.__width) or not (0 <= coord[1] < self.__height):
+            raise CoordError("Значения координат выходят за пределы изображения")
 
-# __getitem(self, item)
-# __setitem(self, key, value) - доступ к объектам по ключу
+    def __setitem__(self, coord, color):
+        self.__checkCoord(coord)
 
-c1["hour"] = 10 # __setItem(self, key, item) -> 10 1 40
-print(c1["hour"], c1["min"], c1["sec"]) # __getItem__(self, item)
+        if color == self.__background:
+            self.__pixels.pop(coord, None) # удаляем пиксел с соответствующими координатами из славаря,
+            # если пиксела с такой координатой нету -> None
+        else:
+            self.__pixels[coord] = color
+            self.__colors.add(color) # в политру colors добовляем цвет
+
+    def __getitem__(self, coord):
+        self.__checkCoord(coord)
+        return self.__pixels.get(coord, self.__background)
+
+    def __iter__(self):
+        return ImageYIterator(self)
+
+# class MyIter:
+#     def __init__(self, limit):
+#         self.__num = 0
+#         self.__limit = limit
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.__num >= self.__limit:
+#             raise StopIteration
+#         self.__num += 1
+#         return self.__num
+#
+# it = MyIter(10)
+# for i in it:
+#     print(i)
+
+img = Image(20, 4)
+# img[1, 1] = "*"
+# color = img[5, 5]
+# print(img.width, img.height)
+
+img[1, 1] = "*"; img[2, 1] = "*"; img[3, 1] = "*"
+# for y in range(img.height):
+#     for x in range(img.width):
+#         print(img[x, y], sep=" ", end="")
+#     print()
+
+for row in img: # чтобы объект img был итерируемым
+    for pixel in row:
+        print(pixel, sep=" ", end="")
+    print()
+
+# __iter__(self) -> it = MyIter(10) объект берётся для итерации
+# __next__(self) -> for i in it когда в цикле for берём следующее значение
+
+
 
 
 
