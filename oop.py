@@ -548,130 +548,225 @@
 
 # 10. OOP
 
-class CoordError(Exception): # своё исключение
-    pass
-
-class ImageXIterator:
-    def __init__(self, img, y: int):
-        self.__limit = img.width
-        self.__y = y
-        self.__img = img
-        self.__x = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.__x >= self.__limit:
-            raise StopIteration
-
-        self.__x += 1
-        return self.__img[self.__x-1, self.__y]
-
-class ImageYIterator:
-    def __init__(self, img):
-        self.__limit = img.height
-        self.__img = img
-        self.__y = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.__y >= self.__limit:
-            raise StopIteration
-
-        self.__y += 1
-        return ImageXIterator(self.__img, self.__y - 1)
-
-class Image:
-    def __init__(self, width, height, background="_"):
-        self.__background = background
-        self.__pixels = {}
-        self.__width = width
-        self.__height = height
-        self.__colors = {self.__background}
-
-    @property # будет возвращать ширину
-    def width(self):
-        return self.__width
-
-    @width.setter # будет устанавливать ширину
-    def width(self, width):
-        self.__width = width
-
-    @property  # будет возвращать высоту
-    def height(self):
-        return self.__height
-
-    @height.setter  # будет устанавливать высоту
-    def height(self, height):
-        self.__height = height
-
-    def __checkCoord(self, coord):
-        if not isinstance(coord, tuple) or len(coord) != 2:
-            raise CoordError("Координаты точки должны быть двухмерным кортежем")
-
-        if not (0 <= coord[0] < self.__width) or not (0 <= coord[1] < self.__height):
-            raise CoordError("Значения координат выходят за пределы изображения")
-
-    def __setitem__(self, coord, color):
-        self.__checkCoord(coord)
-
-        if color == self.__background:
-            self.__pixels.pop(coord, None) # удаляем пиксел с соответствующими координатами из славаря,
-            # если пиксела с такой координатой нету -> None
-        else:
-            self.__pixels[coord] = color
-            self.__colors.add(color) # в политру colors добовляем цвет
-
-    def __getitem__(self, coord):
-        self.__checkCoord(coord)
-        return self.__pixels.get(coord, self.__background)
-
-    def __iter__(self):
-        return ImageYIterator(self)
-
-# class MyIter:
-#     def __init__(self, limit):
-#         self.__num = 0
-#         self.__limit = limit
+# class CoordError(Exception): # своё исключение
+#     pass
+#
+# class ImageXIterator:
+#     def __init__(self, img, y: int):
+#         self.__limit = img.width
+#         self.__y = y
+#         self.__img = img
+#         self.__x = 0
 #
 #     def __iter__(self):
 #         return self
 #
 #     def __next__(self):
-#         if self.__num >= self.__limit:
+#         if self.__x >= self.__limit:
 #             raise StopIteration
-#         self.__num += 1
-#         return self.__num
 #
-# it = MyIter(10)
-# for i in it:
-#     print(i)
-
-img = Image(20, 4)
-# img[1, 1] = "*"
-# color = img[5, 5]
-# print(img.width, img.height)
-
-img[1, 1] = "*"; img[2, 1] = "*"; img[3, 1] = "*"
-# for y in range(img.height):
-#     for x in range(img.width):
-#         print(img[x, y], sep=" ", end="")
+#         self.__x += 1
+#         return self.__img[self.__x-1, self.__y]
+#
+# class ImageYIterator:
+#     def __init__(self, img):
+#         self.__limit = img.height
+#         self.__img = img
+#         self.__y = 0
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.__y >= self.__limit:
+#             raise StopIteration
+#
+#         self.__y += 1
+#         return ImageXIterator(self.__img, self.__y - 1)
+#
+# class Image:
+#     def __init__(self, width, height, background="_"):
+#         self.__background = background
+#         self.__pixels = {}
+#         self.__width = width
+#         self.__height = height
+#         self.__colors = {self.__background}
+#
+#     @property # будет возвращать ширину
+#     def width(self):
+#         return self.__width
+#
+#     @width.setter # будет устанавливать ширину
+#     def width(self, width):
+#         self.__width = width
+#
+#     @property  # будет возвращать высоту
+#     def height(self):
+#         return self.__height
+#
+#     @height.setter  # будет устанавливать высоту
+#     def height(self, height):
+#         self.__height = height
+#
+#     def __checkCoord(self, coord):
+#         if not isinstance(coord, tuple) or len(coord) != 2:
+#             raise CoordError("Координаты точки должны быть двухмерным кортежем")
+#
+#         if not (0 <= coord[0] < self.__width) or not (0 <= coord[1] < self.__height):
+#             raise CoordError("Значения координат выходят за пределы изображения")
+#
+#     def __setitem__(self, coord, color):
+#         self.__checkCoord(coord)
+#
+#         if color == self.__background:
+#             self.__pixels.pop(coord, None) # удаляем пиксел с соответствующими координатами из славаря,
+#             # если пиксела с такой координатой нету -> None
+#         else:
+#             self.__pixels[coord] = color
+#             self.__colors.add(color) # в политру colors добовляем цвет
+#
+#     def __getitem__(self, coord):
+#         self.__checkCoord(coord)
+#         return self.__pixels.get(coord, self.__background)
+#
+#     def __iter__(self):
+#         return ImageYIterator(self)
+#
+# # class MyIter:
+# #     def __init__(self, limit):
+# #         self.__num = 0
+# #         self.__limit = limit
+# #
+# #     def __iter__(self):
+# #         return self
+# #
+# #     def __next__(self):
+# #         if self.__num >= self.__limit:
+# #             raise StopIteration
+# #         self.__num += 1
+# #         return self.__num
+# #
+# # it = MyIter(10)
+# # for i in it:
+# #     print(i)
+#
+# img = Image(20, 4)
+# # img[1, 1] = "*"
+# # color = img[5, 5]
+# # print(img.width, img.height)
+#
+# img[1, 1] = "*"; img[2, 1] = "*"; img[3, 1] = "*"
+# # for y in range(img.height):
+# #     for x in range(img.width):
+# #         print(img[x, y], sep=" ", end="")
+# #     print()
+#
+# for row in img: # чтобы объект img был итерируемым
+#     for pixel in row:
+#         print(pixel, sep=" ", end="")
 #     print()
+#
+# # __iter__(self) -> it = MyIter(10) объект берётся для итерации
+# # __next__(self) -> for i in it когда в цикле for берём следующее значение
 
-for row in img: # чтобы объект img был итерируемым
-    for pixel in row:
-        print(pixel, sep=" ", end="")
-    print()
+# 11. OOP
 
-# __iter__(self) -> it = MyIter(10) объект берётся для итерации
-# __next__(self) -> for i in it когда в цикле for берём следующее значение
+# class Counter:
+#     def __init__(self):
+#         self.__counter = 0
+#
+#     def __call__(self, *args, **kwargs): # делает объект, который можно вызывать как функцию - функтор
+#         self.__counter += 1
+#         print(self.__counter)
+#         return self.__counter
+#
+# c1 = Counter()
+# c1() # 1
+# c1() # 2
+# c2 = Counter() # будкт работать независимо
+# c2() # 1
+# c2() # 2
 
 
+# class StripChars:
+#     def __init__(self, chars): # символы которые нужно удвлять
+#         self.__chars = chars
+#
+#     def __call__(self, *args, **kwargs):
+#         if not isinstance(args[0], str):
+#             raise ValueError("Аргумент должен быть строкой")
+#
+#         return args[0].strip(self.__chars)
+
+# def StripChars(chars): # классический пример замыкания
+#     def stringStrip(string):
+#         if not isinstance(string, str):
+#             raise ValueError("Аргумент должен быть строкой")
+#         return string.strip(chars)
+#     return stringStrip
+#
+# s1 = StripChars("?:!.; ") # будет ссылаться на функцию stringStrip()
+# print(s1(" Hello World! ")) # "Hello World"
+# s2 = StripChars("?:!.; ")
+# print(s1(" Hello? "))
+# print(id(s1), id(s2), sep="\n") # разные объекты
+
+# Менеджеры контекста
+
+# fp = None
+# try:
+#     fp = open("my_file.txt")
+#     for t in fp:
+#         print(t)
+# except Exception as e:
+#     print(e)
+# finally:
+#     if fp is not None:
+#         fp.close()
 
 
+# try:
+#     with open("my_file.txt") as fp: # менеджер контекста, автоматически закрывает поток
+#         for t in fp:
+#             print(t)
+# except Exception as e:
+#     print(e)
 
+# Собственный менеджер контекста
+# __enter__()    __exit__()
+# width<менеджер контекста>as<переменная>:
+#     список конструкций языка Python
 
+# class DefenerVector:
+#     def __init__(self, v):
+#         self.__v = v
+#
+#     def __enter__(self):
+#         self.__temp = self.__v[:] # делаем копию вектора v, dv будет ссылаться на __temp
+#         return self.__temp
+#
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         if exc_type is None: # если небыло никаких исключений
+#             self.__v[:] = self.__temp # в v1 запишем результат сложения
+#         return False
+#
+# v1 = [1, 2, 3] # v1 += v2, если возникнут ошибки, вектор v1 должен остаться как и был
+# v2 = [1, 2]
+# try:
+#     with DefenerVector(v1) as dv:
+#         for i in range(len(dv)):
+#             dv[i] += v2[i]
+# except Exception as e:
+#     print(e)
+#
+# print(v1) # v2 = [1, 2, 3] -> [2, 4, 6], v2 = [1, 2] -> list index of range [1, 2, 3]
 
+# Вложенность
+
+try:
+    with open("my_file.txt") as fin:
+        with open("out.txt", "w") as fout:
+            for line in fin:
+                fout.write(line)
+except Exception as e:
+    print(e)
