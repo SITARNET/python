@@ -773,27 +773,67 @@
 
 # 13. OOP
 
-class Vector:
-    MIN_COORD = 0
-    MAX_COORD = 100
+# class Vector:
+#     MIN_COORD = 0
+#     MAX_COORD = 100
+#
+# # Если нам нужен метод, который бы "работал" с атрибутами экземпляров классов, то это однозначно обычный метод с первым
+# # парвметром self, который указывает на текущий объект.
+#     def setCoords(self, x, y):
+#         if Vector.validate(x) and Vector.validate(y):
+#             self.x = x
+#             self.y = y
+#
+# # Если нужен метод, который можно вызывать непосредственно из класса (или экземпляра) и,  который бы имел доступ к
+# # свойствам и методам этого класса, то его следует объявить как метод класса через декоратор @classmethod.
+#     @classmethod
+#     def validate(cls, arg):
+#         if arg >= cls.MIN_COORD and arg <= cls.MAX_COORD:
+#             return True
+#         return False
+#
+# # Если нужен метод, который можно вызывать непосредственно мз класса, но доступ к его атрибутам не предпологается, то
+# # достаточно его объявить как статический, через докоратор @staticmrthod.
+#     @staticmethod
+#     def norm2(x, y):
+#         return x*x + y*y
 
-# Если нам нужен метод, который бы "работал" с атрибутами экземпляров классов, то это однозначно обычный метод с первым
-# парвметром self, который указывает на текущий объект.
-    def setCoords(self, x, y):
-        if Vector.validate(x) and Vector.validate(y):
-            self.x = x
-            self.y = y
+# 14. OOP
 
-# Если нужен метод, который можно вызывать непосредственно из класса (или экземпляра) и,  который бы имел доступ к
-# свойствам и методам этого класса, то его следует объявить как метод класса через декоратор @classmethod.
-    @classmethod
-    def validate(cls, arg):
-        if arg >= cls.MIN_COORD and arg <= cls.MAX_COORD:
-            return True
-        return False
+class Rectangle:
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
 
-# Если нужен метод, который можно вызывать непосредственно мз класса, но доступ к его атрибутам не предпологается, то
-# достаточно его объявить как статический, через докоратор @staticmrthod.
-    @staticmethod
-    def norm2(x, y):
-        return x*x + y*y
+    def getPerimetr(self):
+        return 2*(self.w + self.h)
+
+class Square:
+    def __init__(self, a):
+        self.a = a
+
+    def getPerimetr(self):
+        return 4*self.a
+
+class Triangle:
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def getPerimetr(self):
+        return self.a + self.b + self.c
+
+r1 = Rectangle(1, 2)
+r2 = Rectangle(3, 4)
+
+s1 = Square(10)
+s2 = Square(20)
+
+t1 = Triangle(1, 2, 3)
+t2 = Triangle(4, 5, 6)
+
+geom = [r1, r2, s1, s2, t1, t2] # коллекция
+
+for g in geom: # перебираем коллекцию
+    print(g.getPerimetr()) # 6 14 40 80 6 15
