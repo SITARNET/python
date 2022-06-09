@@ -763,10 +763,37 @@
 
 # Вложенность
 
-try:
-    with open("my_file.txt") as fin:
-        with open("out.txt", "w") as fout:
-            for line in fin:
-                fout.write(line)
-except Exception as e:
-    print(e)
+# try:
+#     with open("my_file.txt") as fin:
+#         with open("out.txt", "w") as fout:
+#             for line in fin:
+#                 fout.write(line)
+# except Exception as e:
+#     print(e)
+
+# 13. OOP
+
+class Vector:
+    MIN_COORD = 0
+    MAX_COORD = 100
+
+# Если нам нужен метод, который бы "работал" с атрибутами экземпляров классов, то это однозначно обычный метод с первым
+# парвметром self, который указывает на текущий объект.
+    def setCoords(self, x, y):
+        if Vector.validate(x) and Vector.validate(y):
+            self.x = x
+            self.y = y
+
+# Если нужен метод, который можно вызывать непосредственно из класса (или экземпляра) и,  который бы имел доступ к
+# свойствам и методам этого класса, то его следует объявить как метод класса через декоратор @classmethod.
+    @classmethod
+    def validate(cls, arg):
+        if arg >= cls.MIN_COORD and arg <= cls.MAX_COORD:
+            return True
+        return False
+
+# Если нужен метод, который можно вызывать непосредственно мз класса, но доступ к его атрибутам не предпологается, то
+# достаточно его объявить как статический, через докоратор @staticmrthod.
+    @staticmethod
+    def norm2(x, y):
+        return x*x + y*y
