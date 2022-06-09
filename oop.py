@@ -800,40 +800,65 @@
 
 # 14. OOP
 
-class Rectangle:
-    def __init__(self, w, h):
-        self.w = w
-        self.h = h
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def getPerimetr(self):
+#         return 2*(self.w + self.h)
+#
+# class Square:
+#     def __init__(self, a):
+#         self.a = a
+#
+#     def getPerimetr(self):
+#         return 4*self.a
+#
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def getPerimetr(self):
+#         return self.a + self.b + self.c
+#
+# r1 = Rectangle(1, 2)
+# r2 = Rectangle(3, 4)
+#
+# s1 = Square(10)
+# s2 = Square(20)
+#
+# t1 = Triangle(1, 2, 3)
+# t2 = Triangle(4, 5, 6)
+#
+# geom = [r1, r2, s1, s2, t1, t2] # коллекция
+#
+# for g in geom: # перебираем коллекцию
+#     print(g.getPerimetr()) # 6 14 40 80 6 15
 
-    def getPerimetr(self):
-        return 2*(self.w + self.h)
 
-class Square:
-    def __init__(self, a):
-        self.a = a
+# 15. OOP
 
-    def getPerimetr(self):
-        return 4*self.a
+# Пример реализации "Моносостояния"
 
-class Triangle:
-    def __init__(self, a, b, c):
-        self.a = a
-        self.b = b
-        self.c = c
+class ThreadData:
+    __common_attrs = {
+        'name': 'thread_1',
+        'data': {},
+        'id': 1
+    }
 
-    def getPerimetr(self):
-        return self.a + self.b + self.c
+    def __init__(self):
+        self.__dict__ = ThreadData.__common_attrs
 
-r1 = Rectangle(1, 2)
-r2 = Rectangle(3, 4)
+th1 = ThreadData()
+th2 = ThreadData()
 
-s1 = Square(10)
-s2 = Square(20)
-
-t1 = Triangle(1, 2, 3)
-t2 = Triangle(4, 5, 6)
-
-geom = [r1, r2, s1, s2, t1, t2] # коллекция
-
-for g in geom: # перебираем коллекцию
-    print(g.getPerimetr()) # 6 14 40 80 6 15
+th2.id = 3
+th1.attr_new = 'new attr'
+print(th2.__dict__) # {'name': 'thread_1', 'data': {}, 'id': 3, 'attr_new': 'new attr'}
+print(th1.__dict__) # {'name': 'thread_1', 'data': {}, 'id': 3, 'attr_new': 'new attr'}
+print(id(th1.__dict__)) # 139797797284224
+print(id(th2.__dict__)) # 139797797284224
