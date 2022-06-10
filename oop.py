@@ -843,22 +843,61 @@
 
 # Пример реализации "Моносостояния"
 
-class ThreadData:
-    __common_attrs = {
-        'name': 'thread_1',
-        'data': {},
-        'id': 1
-    }
+# class ThreadData:
+#     __common_attrs = {
+#         'name': 'thread_1',
+#         'data': {},
+#         'id': 1
+#     }
+#
+#     def __init__(self):
+#         self.__dict__ = ThreadData.__common_attrs
+#
+# th1 = ThreadData()
+# th2 = ThreadData()
+#
+# th2.id = 3
+# th1.attr_new = 'new attr'
+# print(th2.__dict__) # {'name': 'thread_1', 'data': {}, 'id': 3, 'attr_new': 'new attr'}
+# print(th1.__dict__) # {'name': 'thread_1', 'data': {}, 'id': 3, 'attr_new': 'new attr'}
+# print(id(th1.__dict__)) # 139797797284224
+# print(id(th2.__dict__)) # 139797797284224
 
-    def __init__(self):
-        self.__dict__ = ThreadData.__common_attrs
+# 16. OOP
 
-th1 = ThreadData()
-th2 = ThreadData()
+# __str__() - магический метод для отображения информации об объекте класса для пользователей (print, str)
+# __repr__() - магический метод для отображения информации об объекте класса в режиме откладки (для разработчиков)
 
-th2.id = 3
-th1.attr_new = 'new attr'
-print(th2.__dict__) # {'name': 'thread_1', 'data': {}, 'id': 3, 'attr_new': 'new attr'}
-print(th1.__dict__) # {'name': 'thread_1', 'data': {}, 'id': 3, 'attr_new': 'new attr'}
-print(id(th1.__dict__)) # 139797797284224
-print(id(th2.__dict__)) # 139797797284224
+# class Cat:
+#     def __init__(self, name):
+#         self.name = name
+#
+#     def __repr__(self):
+#         return(f"{self.__class__}: {self.name}")
+#
+#     def __str__(self):
+#         return (f"{self.name}")
+#
+# cat = Cat("Tom")
+# print(cat) # <class '__main__.Cat'>: Tom -> выводим в нашем формате __repr__()
+# print(cat) # Tom -> __str__()
+
+# __len__() - позволяет применять для экземпляров классов
+# __abs__() - позволяет применять для экземпляров классов
+
+class Point:
+    def __init__(self, *args):
+        self.__coords = args
+
+    def __len__(self):
+        return len(self.__coords)
+
+    def __abs__(self):
+        return list(map(abs, self.__coords))
+
+p = Point(1, 2, -3)
+print(len(p)) # колличество аргументов
+print(abs(p)) # список абсолютных координат
+
+
+
