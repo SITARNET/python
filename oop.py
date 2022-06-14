@@ -885,19 +885,79 @@
 # __len__() - позволяет применять для экземпляров классов
 # __abs__() - позволяет применять для экземпляров классов
 
-class Point:
-    def __init__(self, *args):
-        self.__coords = args
+# class Point:
+#     def __init__(self, *args):
+#         self.__coords = args
+# 
+#     def __len__(self):
+#         return len(self.__coords)
+# 
+#     def __abs__(self):
+#         return list(map(abs, self.__coords))
+# 
+# p = Point(1, 2, -3)
+# print(len(p)) # колличество аргументов
+# print(abs(p)) # список абсолютных координат
 
-    def __len__(self):
-        return len(self.__coords)
+# 17. 18. OOP
 
-    def __abs__(self):
-        return list(map(abs, self.__coords))
+# __slots__
 
-p = Point(1, 2, -3)
-print(len(p)) # колличество аргументов
-print(abs(p)) # список абсолютных координат
+# class Point2D: # Быстрее работает и занимает мало памяти
+#     __slots__ = ('x', 'y') # только такие локальные свойства разрешает создавать, нельзя использовать  __dict__
+#     MAX_COORD = 100
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+# pt2 = Point2D(10, 20)
+# # print(pt2.__dict__) # AttributeError: 'Point2D' object has no attribute '__dict__'
+# pt2.y = 30
+# pt2.x = 60
+# print(pt2.x, pt2.y) # 60 30
+# # pt2.z = 30
+# # print(pt2.z) # AttributeError: 'Point2D' object has no attribute 'z'
+# print(pt2.MAX_COORD) # 100
 
 
+import math
 
+class Point2D:
+    __slots__ = ('x', 'y', '__length')
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.length = math.sqrt(x * x + y * y)
+
+    @property
+    def length(self):
+        return self.__length
+
+    @length.setter
+    def length(self, value):
+        self.__length = value
+
+class Point3D(Point2D):
+    __slots__ = 'z'
+
+    def __init__(self, x, y, z):
+        super().__init__(x, y) # будут инициализироваться с базового класса (super())
+        self.z = z
+
+
+# pt2 = Point2D(10, 20)
+# print(pt2.length) # 22.360679774997898
+# pt2.length = 10
+# print(pt2.length)
+#
+# pt3 = Point3D(10, 20)
+# pt3.z = 30 # не наследует __slots__ с базового класс Point2D
+# print(pt3.z)
+# print(pt3.__dict__) # {'z': 30}, остальные определены в __slots__
+# print(pt3.__slots__) # ('x', 'y', '__length')
+
+pt3 = Point3D(10, 20, 30)
+# print(pt3.x, pt3.y, pt3.z) # AttributeError: 'Point3D' object has no attribute 'd'
+# pt3.d = 20
