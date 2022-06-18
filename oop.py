@@ -1004,9 +1004,49 @@
 
 # BaseException -> KeyboardInterrupt
 
+# try:
+#     1/0
+# # except ZeroDivisionError:
+# # except ArithmeticError:
+# except Exception:
+#     print("На ноль делить нельзя!")
+
+
+# 20. OOP
+
+# def func2():
+#     try:
+#         return 1/0
+#     except:
+#         return "-- деление на ноль --"
+#
+# def func1():
+#     return func2()
+#
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# # func1() # ZeroDivisionError # main -> func1 -> func2
+# print(func1()) # -- деление на ноль --
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+
+
+def func2():
+    return 1/0
+
+def func1():
+    return func2()
+
+print("Каккой то текст!")
+print("Каккой то текст!")
+print("Каккой то текст!")
 try:
-    1/0
-# except ZeroDivisionError:
-# except ArithmeticError:
-except Exception:
-    print("На ноль делить нельзя!")
+    print(func1())
+except:
+    print("-- деление на ноль --")
+print("Каккой то текст!")
+print("Каккой то текст!")
+print("Каккой то текст!")
+
