@@ -1033,20 +1033,74 @@
 # print("Каккой то текст!")
 
 
-def func2():
-    return 1/0
+# def func2():
+#     return 1/0
+#
+# def func1():
+#     return func2()
+#
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# try:
+#     print(func1())
+# except:
+#     print("-- деление на ноль --")
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# print("Каккой то текст!")
 
-def func1():
-    return func2()
 
-print("Каккой то текст!")
-print("Каккой то текст!")
-print("Каккой то текст!")
+# 21. OOP
+
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# # raise ZeroDivisionError("Деление на ноль")
+# e = ZeroDivisionError("Деление на ноль")
+# raise e
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+# print("Каккой то текст!")
+
+
+class ExeptionPrint(Exception):
+    """Общий класс исключения принтера"""
+
+
+class ExceptionPrintSentData(Exception):
+    """Класс исключения при отправке данных принтеру."""
+
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.msg = args[0] if args else None
+
+    def __str__(self):
+        return f"Ошибка: {self.msg}"
+
+
+class PrintData:
+    def print(self, data):
+        self.send_data(data)
+        print(f"печать: {str(data)}")
+
+    def send_data(self,data):
+        if not self.send_to_print(data):
+            raise ExceptionPrintSentData("Принтер не отвечает!")
+
+    def send_to_print(self, data):
+        return False
+
+
+p = PrintData()
+# p.print("123")
+# try:
+#     p.print("123")
+# except ExceptionPrintSentData:
+#     print("Ошибка печати!")
 try:
-    print(func1())
-except:
-    print("-- деление на ноль --")
-print("Каккой то текст!")
-print("Каккой то текст!")
-print("Каккой то текст!")
-
+    p.print("123")
+except ExceptionPrintSentData as e:
+    print(e)
+except ExeptionPrint:
+    print("Ошибка печати")
