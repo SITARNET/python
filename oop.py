@@ -921,43 +921,92 @@
 # print(pt2.MAX_COORD) # 100
 
 
-import math
-
-class Point2D:
-    __slots__ = ('x', 'y', '__length')
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.length = math.sqrt(x * x + y * y)
-
-    @property
-    def length(self):
-        return self.__length
-
-    @length.setter
-    def length(self, value):
-        self.__length = value
-
-class Point3D(Point2D):
-    __slots__ = 'z'
-
-    def __init__(self, x, y, z):
-        super().__init__(x, y) # будут инициализироваться с базового класса (super())
-        self.z = z
-
-
-# pt2 = Point2D(10, 20)
-# print(pt2.length) # 22.360679774997898
-# pt2.length = 10
-# print(pt2.length)
+# import math
 #
-# pt3 = Point3D(10, 20)
-# pt3.z = 30 # не наследует __slots__ с базового класс Point2D
-# print(pt3.z)
-# print(pt3.__dict__) # {'z': 30}, остальные определены в __slots__
-# print(pt3.__slots__) # ('x', 'y', '__length')
+# class Point2D:
+#     __slots__ = ('x', 'y', '__length')
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         self.length = math.sqrt(x * x + y * y)
+#
+#     @property
+#     def length(self):
+#         return self.__length
+#
+#     @length.setter
+#     def length(self, value):
+#         self.__length = value
+#
+# class Point3D(Point2D):
+#     __slots__ = 'z'
+#
+#     def __init__(self, x, y, z):
+#         super().__init__(x, y) # будут инициализироваться с базового класса (super())
+#         self.z = z
+#
+#
+# # pt2 = Point2D(10, 20)
+# # print(pt2.length) # 22.360679774997898
+# # pt2.length = 10
+# # print(pt2.length)
+# #
+# # pt3 = Point3D(10, 20)
+# # pt3.z = 30 # не наследует __slots__ с базового класс Point2D
+# # print(pt3.z)
+# # print(pt3.__dict__) # {'z': 30}, остальные определены в __slots__
+# # print(pt3.__slots__) # ('x', 'y', '__length')
+#
+# pt3 = Point3D(10, 20, 30)
+# # print(pt3.x, pt3.y, pt3.z) # AttributeError: 'Point3D' object has no attribute 'd'
+# # pt3.d = 20
 
-pt3 = Point3D(10, 20, 30)
-# print(pt3.x, pt3.y, pt3.z) # AttributeError: 'Point3D' object has no attribute 'd'
-# pt3.d = 20
+
+# 19. OOP
+
+# print("Какой то текст!")
+# print("Какой то текст!")
+# print("Какой то текст!")
+# try:
+#     file = open("myfile.txt")
+# except FileNotFoundError:
+#     print("Не возможно открыть файл!")
+# print("Какой то текст!")
+# print("Какой то текст!")
+# print("Какой то текст!")
+
+# BaseException -> Exception -> Attribute Error
+
+# BaseException -> Exception -> Arithmetic Error -> ZeroDivision Error
+# BaseException -> Exception -> Arithmetic Error -> Floating Point Error
+# BaseException -> Exception -> Arithmetic Error -> Overflow Error
+
+# BaseException -> Exception -> EOF Error
+
+# BaseException -> Exception -> Name Error
+
+# BaseException -> Exception -> Lookup Error -> Index Error
+# BaseException -> Exception -> Lookup Error -> Key Error
+
+# BaseException -> Exception -> OS Error -> FileNotFound Error
+# BaseException -> Exception -> OS Error -> Interrupted Error
+# BaseException -> Exception -> OS Error -> Permission Error
+# BaseException -> Exception -> OS Error -> TimeOut Error
+
+# BaseException -> Exception -> Type Error
+
+# BaseException -> Exception -> Value Error
+
+# BaseException -> SystemExit
+
+# BaseException -> GeneratorExit
+
+# BaseException -> KeyboardInterrupt
+
+try:
+    1/0
+# except ZeroDivisionError:
+# except ArithmeticError:
+except Exception:
+    print("На ноль делить нельзя!")
