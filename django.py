@@ -1,3 +1,5 @@
+# 1. Django
+
 # Виртуальное окружение (venv) -> Python 3..3 + Django 3.1.4
 
 # localhost - 127.0.0.1
@@ -25,3 +27,12 @@
 # python3 manage.py runserver 192.168.1.1:4000 - меняем ip
 
 
+# 1. Django
+
+# MTV - models, templates, views
+# Создаём приложение (пакет). Оно должно быть максимально независимым от других приложений
+# python manage.py startapp women
+# coolsite -> settings.py -> INSTALLED_APPS -> 'women.apps.WomenConfig' - регистрация пакета
+# coolsite -> urls.py -> path('women/', index) -> импортируем маршрут
+# coolsite -> Mark Directory as -> Sources root - для корректного импортирования
+# women -> urls.py - создаём свои маршруты в пакете (если будем переносить пакет на другой сайт)
