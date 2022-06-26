@@ -74,7 +74,7 @@
 # django.shortcuts.redirect
 # name='home' - используем имя для редиректа
 
-# 3. Django
+# 4. Django
 
 # SQLite, MySQL, PortageSQL, Oracle...
 # WSGI-приложение -> API интерфейс -> Django ORM -> Драйвер ORN -> SQLite....
@@ -112,3 +112,68 @@
 # women/migrations/0001_initial.py
 # python manage.py sqlmigrate women 0001 -> посмотреть SQL-запрос для модели women под номером 0001
 # python manage.py migrate -> запускаем миграцию (sql-запрос)
+
+
+# 5. Django
+
+# CRUD - Create, Read, Update, Delete
+# ORM фркймворка Django
+
+# python manage.py shell -> консоль фрймворка
+# >>> form women.maodels import Women
+# >>> Women(title='Анджелина Джоли', content='Биография Анджелины Джоли')
+# >>> w1 = _
+# >>> w1.save()
+# >>> w1.id -> 1
+# >>> w1.title -> Анджелина Джоли
+# >>> w1.pk (=w1.id) -> 1
+# >>> from django.db import connection
+# >>> connection.queries - посмотреть SQL-запросы
+# >>> w3 = Women()
+# >>> w3.title = 'Джулия Робертс'
+# >>> w3.content = 'Биография Джулии Робертс'
+# >>> w3.save()
+# Или используем другой метод
+# >>> Women.objects
+# >>> w4 = Women.objects.create(title='Ума Турман', content='Биография Умы Турман') - записываеться сразу в базу
+# >>> w4
+# >>> w4.title
+# >>> w4.pk
+# Можно без присвоения переменной
+# >>> Women.objects.create(title='Кира Найтли', content='Биография Киры Найтли')
+# >>> Women.objacts.all() - все текущие записи
+# models.py -> def __str__(self): return self.title в классе Women
+# >>> exit() - выходим из оболочки Django (перезапускаем)
+# >>> python manage.py shell
+# >>> from women.models import Women
+# >>> Women.objects.all() -> <QuerySet [<Women: Анджелина Джоли>, <Women: Энн.... -> ограничение на 21 запись!
+# >>> w = _ - присваеваем список
+# >>> w[0] -> <Women: Анджелина Джоли>
+# >>> w[0].title -> 'Анджелина Джоли'
+# >>> len(w) -> 5
+# >>> for wi in w: print(wi.title) -> Анджелина Джоли, Энн Хэтэуэй, Джулия Робертс, Ума Турман, Кира Найтли
+
+# >>> Women.objects.filter(title='Энн Хэтэуэй') - выбока с помощью фильтра
+# >>> Women.objects.filter(pk=2) -> <QuerySet [<Women: Энн Хэтэуэй>]>
+# >>> Women.objacts.filter() => <имя_атрибута>__gte - сравнение больше или равно (>=)
+# >>> Women.objacts.filter() => <имя_атрибута>__lte - сравнение меньше или равно (<=)
+# >>> Women.objects.filter(pk__gte=2) -> <QuerySet [<Women: Энн Хэтэуэй>, <Women: Джулия Робертс>, <Women: Ума Турман>...
+
+# >>> Women.objects.exclude(pk=2) => выбирает все записи, которые НЕ соответствуют критерию
+
+# >>> Women.objects.get(pk=2) => выбериат если точно знаем что запись есть, иначе генерирует исключение
+
+# >>> Women.obgects.filter(pk__lte=4).order_by('title') - сортировка
+# >>> Women.objects.order_by('time_update')
+# >>> Women.objects.order_by('-time_update') - обратная сортировка
+
+# >>> wu = Women.objects.get(pk=2)
+# >>> wu.tutle = 'Марго Робби' - присваеваем новое значение
+# >>> wu.content = 'Биография Марго Робби' - присваеваем новое значение
+# >>> wu.save() - сохраняем
+
+# >>> wd = Women.objects.filter(pk__gte=4)
+# >>> wd -> <QuerySet [<Women: Ума Турман>, <Women: Кира Найтли>]>
+# >>> wd.detete() -> (2, {'women.Women': 2}) - удалили две записи
+
+# http://djbook.ru/rel3.0/topics/db/queries.html
