@@ -187,3 +187,27 @@
 # https://djbook.ru/rel3.0/topics/templates.html
 
 # {% extends 'women/base.html' %} # наследование общего шаблона
+
+
+# 7. Django
+
+# CSS, JavaScript
+# coolsite/static -> общая папка для реального сервера
+# coolsite/coolsite/static -> не стандартный путь
+# coolsite/women/static -> не стандартный путь
+
+# python manage.py collectstatic -> берутся все файлы из не стандартных путей и перемещаються в coolsite/static
+
+# В пакете кофигураций надо определить (coolsite/settings.py):
+# STATIC_URL - префикс URL-адреса для статических файлов
+# STATIC_ROOT - путь к общей статической папке, исп. реальным сервером
+# STATICFILES_DIRS - список нестандартных путей к статическим файлам, исп. для сбора и для режима откладки
+
+# coolsite/women/static/women -> пространство имён
+# coolsite/women/static/women/css
+# coolsite/women/static/women/js
+# coolsite/women/static/women/images
+
+# {% load static %} - служит для подключения статических файлов
+# https://djbook.ru/rel3.0/ref/templates/builtins.html#ref-templates-builtins-filters - фильтры
+#
