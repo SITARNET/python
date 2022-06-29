@@ -177,3 +177,13 @@
 # >>> wd.detete() -> (2, {'women.Women': 2}) - удалили две записи
 
 # http://djbook.ru/rel3.0/topics/db/queries.html
+
+
+# 6. Django
+
+# ~/PycharmProjects/python/django/djsite/coolsite$ python manage.py runserver
+# http://127.0.0.1:8000/
+
+# https://djbook.ru/rel3.0/topics/templates.html
+
+# {% extends 'women/base.html' %} # наследование общего шаблона

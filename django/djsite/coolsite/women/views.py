@@ -1,9 +1,16 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect # встренный шаблонизатор django
 
+from .models import *
 
-def index(request): #HttpRequest
-    return HttpResponse("Страница приложения women.")
+menu = ["О сайте", "Добавить статью", "Обратная связь", "Войти"]
+
+def index(request):
+    posts = Women.objects.all() # получаем все статьи
+    return render(request, 'women/index.html', {'posts': posts, 'menu': menu, 'title': 'Главная страница'})
+
+def about(request):
+    return render(request, 'women/about.html', {'title': 'О сайте'})
 
 def categories(request, catid):
     if (request.GET): # request.POST
