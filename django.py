@@ -210,4 +210,11 @@
 
 # {% load static %} - служит для подключения статических файлов
 # https://djbook.ru/rel3.0/ref/templates/builtins.html#ref-templates-builtins-filters - фильтры
-#
+
+
+# 8. Django
+
+# {% имя_тега %}  {{ имя_переменной }}  {{ value|имя_фильтра }}
+# <a href="#">...</a>
+# {% url'<URL-адрес или имя маршрута>'[параметры ссылки] %}
+

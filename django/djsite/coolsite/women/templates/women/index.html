@@ -4,11 +4,12 @@
 <ul class="list-articles">
 	{% for p in posts %}
 			<li><h2>{{p.title}}</h2>
-	{% autoescape on %} # по умолчанию, эранирование тегов
-	{{p.content|linebreaks|truncatewords:50}} # тег обзаца|сокращение текста 50 слов
+	{% autoescape on %}
+	{{p.content|linebreaks|truncatewords:50}}
 	{% endautoescape %}
 			<div class="clear"></div>
-			<p class="link-read-post"><a href="#">Читать пост</a></p>
+<!--			<p class="link-read-post"><a href="{% url 'post' p.pk %}">Читать пост</a></p>-->
+				<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a></p>
 			</li>
 	{% endfor %}
 </ul>
