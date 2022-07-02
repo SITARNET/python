@@ -218,3 +218,39 @@
 # <a href="#">...</a>
 # {% url'<URL-адрес или имя маршрута>'[параметры ссылки] %}
 
+
+# 9. Django
+
+# Нормализация данных
+
+# ForeignKey - для связей Many to One (поля отношений)
+# ManyToManyField - для связей Many to Many (многие к многим)
+# OneToOneField - для связей One to One (один к одному)
+
+# ForeignKey(<ссылка на первичную модель>, on_delete=<ограничения при удалении>)
+
+# models.CASCADE - при удалении записи из первичной модели (таблица Category) происходит удаление всех записей
+# из вторичной модели (Women), связанных с удаляемой категорией
+
+# models.PROTECT - запрет удаление записи из первичной модели, если она используется во вторичной (выдаёт исключение)
+
+# models.SET_NULL - при удалении записи первичной модели устанавливает значение foreign key в NULL у соответствующих
+# записей вторичной модели
+
+# models.SET_DEFAULT - то же самое, что и SET_NULL, только вместо NULL устанавливает значение по умолчанию, каторое
+# должно быть определено через класс ForeignKey
+
+# models.SET() - то же самое, только устанавливает пользовательское значение
+
+# models.DO_NOTHING - удаление записи в первичной модели не вызывает никаких действий у вторичных моделей
+
+# djbook.ru/rel3.0/topics/db/models.html#relationships
+
+# python manage.py makemagration -> python manage.py migrate - создали таблицы
+# python manage.py shell
+# from women.models import *
+# Category.objects.create(name='Актрисы')
+# Category.objects.create(name='Певицы')
+# w_list = Women.objects.all()
+# w_list.update(cat_id=1)
+#

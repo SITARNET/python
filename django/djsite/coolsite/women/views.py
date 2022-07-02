@@ -11,10 +11,13 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 
 def index(request):
     posts = Women.objects.all() # получаем все статьи
+    cats = Category.objects.all() # получаем все категории
     context = {
         'posts': posts,
+        'cats': cats,
         'menu': menu,
-        'title': 'Главная страница'
+        'title': 'Главная страница',
+        'cat_selected': 0
     }
 
     # return render(request, 'women/index.html', {'posts': posts, 'menu': menu, 'title': 'Главная страница'})
@@ -37,3 +40,21 @@ def pageNotFound(request, exception):
 
 def show_post(request, post_id):
     return HttpResponse(f"Отображене статьи с id = {post_id}")
+
+def show_category(request, cat_id):
+    posts = Women.objects.filter(cat_id=cat_id)
+    cats = Category.objects.all()
+
+    if len(posts) == 0: # если нету постов -> выводим 404
+        raise Http404
+
+    context = {
+        'posts': posts,
+        'cats': cats,
+        'menu': menu,
+        'title': 'Отображение по рубрикам',
+        'cat_selected': cat_id
+    }
+
+    return render(request, 'women/index.html', context=context)
+
