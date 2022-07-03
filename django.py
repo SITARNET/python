@@ -253,4 +253,37 @@
 # Category.objects.create(name='Певицы')
 # w_list = Women.objects.all()
 # w_list.update(cat_id=1)
-#
+
+
+# 10. Django
+
+# setting.py -> LANGUAGE_CODE = 'ru'
+# 127.0.0.1:8000/admin/
+
+# создаём администратора
+# ...djsite/coolsite -> python mange.py createsuperuser
+
+# Регистрируем наше приложение Women
+# ...coolsite/women/admin.py -> from .midels import * -> admin.site.register(Women)
+
+# используем вложенный класс для настройки админ-панели -> class Meta в models.py
+# apps.py -> verbose_name = 'Женщины мира' # если settings.py -> INSTALLED_APPS -> women.apps.WomenConfig (а не women)
+# Добавляем поля ->admin.py
+
+# list_display = ('',...) - список полей которые мы хотим видеть
+# list_display_links = ('',...) - список полей на которые мы можем кликнуть
+# search_fields = ('',...) - по каким полям можно производить поиск
+# list_editable = ('',) - поле будет редактируемым
+# list_filter = ('',...) - поля по которым сможем фильтровать список полей
+# admin.site.register(Women, WomenAdmin) # регистрируем класс
+
+# Переводим названия title, time create, photo, is published
+# mooels.py -> в class Women -> добавляем к каждому полю verbose_name='...'
+
+# Регистрируем Category
+
+# Вносим в таблицы базы данных мета описания
+# Создаём файл миграции
+# ../coolsite -> python manage.py makemigrations -> создаётся файл
+# python manage.py migrate -> применяем все миграции для базы данных
+
