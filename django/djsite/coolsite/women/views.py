@@ -11,10 +11,10 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 
 def index(request):
     posts = Women.objects.all() # получаем все статьи
-    cats = Category.objects.all() # получаем все категории
+    # cats = Category.objects.all() # получаем все категории # применили tags
     context = {
         'posts': posts,
-        'cats': cats,
+        # 'cats': cats, # применили tags
         'menu': menu,
         'title': 'Главная страница',
         'cat_selected': 0
@@ -43,14 +43,14 @@ def show_post(request, post_id):
 
 def show_category(request, cat_id):
     posts = Women.objects.filter(cat_id=cat_id)
-    cats = Category.objects.all()
+    # cats = Category.objects.all() # применили tags
 
     if len(posts) == 0: # если нету постов -> выводим 404
         raise Http404
 
     context = {
         'posts': posts,
-        'cats': cats,
+        # 'cats': cats, # применили tags
         'menu': menu,
         'title': 'Отображение по рубрикам',
         'cat_selected': cat_id

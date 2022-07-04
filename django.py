@@ -287,3 +287,13 @@
 # ../coolsite -> python manage.py makemigrations -> создаётся файл
 # python manage.py migrate -> применяем все миграции для базы данных
 
+
+# 11. Django
+
+# Убираем дублирование с помощью пользовательских тегов в models.py
+# simple tags - простые теги
+# inclusion tags - включающие теги, формирует свой шаблон и возвращает html
+
+# https://djbook.ru/rel3.0/howto/custom-template-tags.html
+
+#
