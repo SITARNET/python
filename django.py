@@ -296,4 +296,24 @@
 
 # https://djbook.ru/rel3.0/howto/custom-template-tags.html
 
-#
+# 12. Django
+
+# views.py -> show_post()
+# get_object_or_404(Women, pk=post_id) -> если в таблице Women не находит pk, то 404
+# women/post.html
+# models.py -> slug - добавим поле SlugField -> в class Women и в Category
+# удаляем старые миграции, из cat удаляем null=True, удаляем базу db.sqlite3
+# python manage.py makemigrations -> создаём миграцию
+# python manage.py migrate -> применяем миграцию
+
+# admin.py -> class CategoryAdmin() -> prepopulated_fields = {"slug": ("name",)} -> автоматом заполняем поле slug
+# admin.py -> class WomenAdmin() -> prepopulated_fields = {"slug": ("title",)} -> автоматом заполняем поле slug
+
+# urls.py -> path('post/<slug:post_slug>/', show_post, name='post')
+# views.py -> def show_post(request, post_slug):
+#               post = get_object_or_404(Women, slug=post_slug)
+# models.py -> def get_absolute_url(self):
+#               return reverse('post', kwargs={'post_slug': self.slug})
+
+
+

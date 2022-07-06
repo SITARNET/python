@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render, redirect # встренный шаблонизатор django
+from django.shortcuts import render, redirect, get_object_or_404 # встренный шаблонизатор django
 
 from .models import *
 
@@ -38,8 +38,19 @@ def login(request):
 def pageNotFound(request, exception):
     return HttpResponseNotFound("<h1>Страница не найдена!</h1>")
 
-def show_post(request, post_id):
-    return HttpResponse(f"Отображене статьи с id = {post_id}")
+def show_post(request, post_slug):
+    # return HttpResponse(f"Отображене статьи с id = {post_id}")
+    post = get_object_or_404(Women, slug=post_slug)
+
+    context = {
+        'post': post,
+        'menu': menu,
+        'title': post.title,
+        'cat_selected': post.cat_id
+    }
+
+    return render(request, 'women/post.html', context=context)
+
 
 def show_category(request, cat_id):
     posts = Women.objects.filter(cat_id=cat_id)
