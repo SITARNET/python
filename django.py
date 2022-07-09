@@ -316,4 +316,60 @@
 #               return reverse('post', kwargs={'post_slug': self.slug})
 
 
+# 13. Django
 
+# <form>...</form>
+# class AddPostForm(forms.Form):
+# djbook.ru/rel3.0/ref/forms/fields.html - классы встроенных полей
+# addpage.html -> <form action="{% url 'add_page' %}" method="post">
+#     {% csrf_token %} # защита формы от csrf аттак
+#     {{ form.as_p }} # отображает поля формы через тег <p>
+#     <button type="submit">Добавить</button>
+# </form>
+
+# чтобы форма отобразилась второй раз с заполнеными полями
+# def addpage(request):
+#   if request.method == 'POST':
+#       form = AddPostForm(request.POST)
+#       if form.is_valid():
+#           print(form.cleaned_data)
+#   else:
+#       form = AddPostForm()
+
+#  return...
+
+# label="Заголовок" - перевод
+# widget=forms.Textarea(attrs={'cols': 60, 'rows': 10})
+# required=False - не обязательное поле
+# empty_label="Категория не выбрана" - вместо -----
+# initial=True - будет делать checkbox отмеченым
+
+# for="{{ form.title.id_for_label }}" - атоматический индефикатор поля
+
+#     <p><label class="form-label" for="{{ form.title.id_for_label }}">{{ form.title.label }}: </label>{{ form.title }}</p>
+#     <div class="form-error">{{ form.title.errors }}</div>
+#     <p><label class="form-label" for="{{ form.slug.id_for_label }}">{{ form.slug.label }}: </label>{{ form.slug }}</p>
+#     <div class="form-error">{{ form.slug.errors }}</div>
+#     <p><label class="form-label" for="{{ form.content.id_for_label }}">{{ form.content.label }}: </label>{{ form.content }}</p>
+#     <div class="form-error">{{ form.content.errors }}</div>
+#     <p><label class="form-label" for="{{ form.is_published.id_for_label }}">{{ form.is_published.label }}: </label>{{ form.is_published }}</p>
+#     <div class="form-error">{{ form.is_published.errors }}</div>
+#     <p><label class="form-label" for="{{ form.cat.id_for_label }}">{{ form.cat.label }}: </label>{{ form.cat }}</p>
+#     <div class="form-error">{{ form.cat.errors }}</div>
+
+# чтобы строчки не повторялись, выведем с помощью цикла for
+
+# если хотим применить к каждому полю свой класс стилей
+# widget=forms.TextInput(attrs={'class': 'form-input'}) - в файле forms.py
+
+# для сохраниния в базу
+# в views.py
+# if form.is_valid():
+#   try:
+#       Women.objects.create(**form.cleaned_data)
+#       return redirect('home')
+#   except:
+#       form.add_error(None, 'Ошибка добавления поста')
+
+# в addpage.py перед циклом
+# <div class="form-error">{{ form.non_field_errors }}</div>
