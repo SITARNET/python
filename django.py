@@ -373,3 +373,37 @@
 
 # в addpage.py перед циклом
 # <div class="form-error">{{ form.non_field_errors }}</div>
+
+
+# 14. Django
+
+# Связываем форму с мделью, убираем дублирование кода
+# class Meta
+# рекомендуется перечислять список полей fields = ['', ...]
+
+# прописываем свои стили для title, content
+# widgets = {'title': forms.TextInput(attrs={'class': 'form-input'})} - class="form-input"
+
+# категория не выбрана - ------
+# для этого напишем конструктор
+# def __init__(self, *args, **kwargs):
+#   super().__init__(*args, **kwargs)
+#   self.fields['cat'].empty_label = "Категория не выбрана"
+
+# form.save() # все данные которые будут переданы от формы, будут автоматически занесены в базу данных
+# try и exept удаляем, django сама будет проверять на ошибки
+
+# делаем загрузку фото
+# добовляем поле 'photo' -> forms.py
+# request.FILES - передаём список файлов -> views.py
+# в addpage.html -> <form.... enctype="multipart/form-data">
+
+# валидация - проверка корректности полей
+# выполняеться за счёт class Women -> models.py
+# в SQLite max_length не выполняеться!!!
+
+# Свой собственный валидатор. Если длина больше 200 символов, то ошибка
+# is_valid() | save() -> Стандартные валидаторы -> Пользовательские валидаторы
+
+# forms.py -> def clean_title(self): # clean_+название поля для которого пишем валидатор
+# ValidationError импортируем

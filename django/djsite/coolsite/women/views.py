@@ -31,15 +31,10 @@ def addpage(request):
     # form = AddPostForm()
 
     if request.method == 'POST':
-        form = AddPostForm(request.POST)
-        # if form.is_valid():
-        #     print(form.cleaned_data) # для отображения в теминале
+        form = AddPostForm(request.POST, request.FILES) # передаём список файлов
         if form.is_valid():
-          try:
-              Women.objects.create(**form.cleaned_data)
-              return redirect('home')
-          except:
-              form.add_error(None, 'Ошибка добавления поста')
+            form.save() # все данные которые будут переданы от формы, будут автоматически занесены в базу данных
+            return redirect('home')
     else:
         form = AddPostForm()
     return render(request, 'women/addpage.html', {'form': form, 'menu': menu, 'title': 'Добавление статьи'})
