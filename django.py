@@ -407,3 +407,27 @@
 
 # forms.py -> def clean_title(self): # clean_+название поля для которого пишем валидатор
 # ValidationError импортируем
+
+
+# 15. Django
+
+# CBV - Class-Based Views
+# djbook.ru/rel1.9/ref/class-based-views/index.html
+
+# вместо функци index создадим класс представлений
+# ListView - список чего либо
+# <имя приложения>/<имя модели>_list.html
+# women/women_list.html - стандартный путь к шаблону
+# template_name = 'women/index.html' - прописываем свой путь к шаблону
+# в urls.py -> path('', WomenHome.as_view(), name='home')
+# заголовок -> Главная страница -> extra_content = {'title': 'Главная страница'} - для статических данных
+# для динамических -> def get_context_data()
+
+# отображение статей отмеченые для публикации
+
+# Для отображения списка категорий
+# allow_empty = False # 404 если нету такой категории
+
+# DateilView - для отображения поста
+
+# CreateView - для добавления
