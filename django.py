@@ -431,3 +431,149 @@
 # DateilView - для отображения поста
 
 # CreateView - для добавления
+
+
+# 16. Django
+
+# Методы сортировки
+# djbook.ru/rel3.0/ref/models/querysets.html
+# python manage.py shell
+# from women.models import *
+# Women.objects.all() - все записи
+# Women.objects.all()[:5] - первые 5 записей
+# from django.db import connction
+# connection.queries - показывает sql-запросы
+# Women.objects.all()[3:8] - с 3 по 8 (8 не вкл.)
+# Women.objects.order_by('pk') - сортировка по полю pk (id)
+# Women.objects.order_by('-pk') - в обратном порядке
+# Women.objects.all().reverse() - в обратном порядке
+
+# Метод filter() - список записей по атрибуту
+# Women.objects.filter(pk__lte=2) - pk <= 2
+# Women.objects.get(pk=2) - выбор одной записи
+
+# Обработка связанных таблиц
+# w = Women.objects.get(pk=1)
+# w.title..., w.is_published - значения полей записи таблицы women;
+# w.pk, w.id - идентификаторы записи (первичный ключ);
+# w.cat_id - идентификатор рубрики (внешний ключ);
+# w.cat - объект класса Category, хранящий данные записи с id = cat_id.
+
+# Запросы с использованием первичной модели (_set)
+# w.cat.name -> Актрисы
+# c = Category.objects.get(pk=1)
+# c -> <Category: Актрисы>
+# c.women_set.all() - выводит все записи с категории Актрисы
+# есл хотим использовать, например: get_posts, то в models.py -> cat = models.ForeignKey(..., related_name='get_posts')
+
+# Фильтры полей Fields lookups
+# <имя атрибута>__gte - сравнение больше или равно (>=);
+# <имя атрибута>__lte - сравнение меньше или равно (<=);
+
+# Women.ojects.filter(title__contains='ли') -> ищет в title слог 'ли'
+# Women.ojects.filter(title__icontains='ли') -> ищет в title слог 'ли' без учёта регистра с латинскими символами
+# Women.objects.filter(pk__in=[2,5,11,12]) -> выбираем записи по перечисленным значениям
+# Women.objects.filter(pk__in=[2,5,11,12], is_published=True) -> два условия
+# Women.objects.filter(cat__in=[1,2]) -> выведет из Актрис и Певиц
+
+# Класс Q: И ИЛИ НЕ
+# & - логическое И (приоритет 2)
+# | - логическое ИЛИ (приоритет 3)
+# ~ - логическое НЕ (приоритет 1)
+# from django.db.models import Q
+# Women.objects.filter(Q(pk__lt=5) | Q(cat_id=2)) -> pk>=5 или cat_id=2
+# Women.objects.filter(~Q(pk__lt=5) | Q(cat_id=2)) -> pk<=5 или cat_id=2
+
+# Быстрое получение записи из таблиц
+# Women.objects.first() -> первая запись
+# Women.objects.last() -> последняя запись
+
+# Получение записи по дате
+# Women.objects.latest('time_update') -> самая поздняя запись
+# Women.objects.earliest('time_update') -> самая последняя запись
+
+# Выбор записи относительно текущей (по дате)
+# w = Women.objects.get(pk=7)
+# w
+# w.get_previous_by_time_update() -> предыдущая запись
+# w.get_next_by_time_update() -> следующая запись
+
+# exists() - проверка существования записи
+# count() - получение числа записей
+# добавим новую категорию -> Category.objects.create(name='Спортсменки', slug='sportsmenky')
+# c3 = Category.objects.get(pk=3)
+# c3
+# c3.women_set.exists() -> False (нету ни одной записи связанной)
+# c2.women_set.exists() -> True
+
+# # c2.women_set.exists() -> 7 - колличество записей
+
+# Обращение к полю первичной модели через атрибут
+# Women.objects.filter(cat__slug='Актрисы')
+# <имя первичной модели>__<название поля первичной модели>
+# Women.objects.filter(cat__name='Певицы')
+# Women.objects.filter(cat__name__contains='цы')
+# Category.objects.filter(women__title__conteins='ли') -> выбираем все категории которые связаны в вторичной модели Women
+# Category.objects.filter(women__title__conteins='ли').distinct() -> вычираем все уникальные категории
+
+# Фукции агрегации
+# Все функции агригации надо импортировать
+# from django.db.models import *
+# Women.objects.agreegate(Min('cat_id')) -> {'cat_id__min': 1}
+# Women.objects.agreegate(Min('cat_id'), Max('cat_id')) -> {'cat_id__min': 1, 'cat_id__max': 2}
+# другие ключи
+# Women.objects.agreegate(cat_min=Min('cat_id'), cat_max=Max('cat_id')) -> {'cat_min': 1, 'cat_max': 2}
+# стандартные матиматические операции
+# Women.objects.aggrigate(res=Sum('cat_id') - Count('cat_id')) -> {'res': 7} - вычитание
+# Women.objects.aggrigate(res=Avg('cat_id')) -> {'res': 1.5} - среднее арифметическое
+# Women.objects.filter(pk__gt=4).aggregate(res=Avg('cat_id')) -> используем фильтр pk>=4
+
+# Выбор записей из конкретных её полей
+# Women.objects.value('title', 'cat_id').get(pk=1) -> {'title': 'Анджелина Джоли', 'cat_id': 1} - этот запрос работает быстрее
+# Women.objects.value('title', 'cat__name').get(pk=1) -> {'title': 'Анджелина Джоли', 'cat__name': 'Актрисы'}
+# w = Women.objects.value('title', 'cat_name')
+# for p in w:
+#   print(p['title'], p['cat__name']) -> Ариана Гранде Пивицы, Анастасия Эшли Певицы.....
+
+# Групировка записей (метод annotate)
+# Women.objects.value('cat_id').annotate(Count('id')) -> [{'cat_id': 1, 'id_count': 7}, {'cat_id': 2, 'id_count': 7}]
+# Women.objects.annotate(Count('cat'))
+# c = Women.objects.annotete(Count('women'))
+# c -> [<Category: Актрисы>, <Category: Певицы>, <Category: Спортсменки>]
+# с[0].women__count -> 7
+# c[1].women__count -> 7
+# c = Women.objects.annotete(total=Count('women'))
+# c[0].total -> 7
+# len(c) -> 3
+# c = Women.objects.annotete(total=Count('women')).filter(total__gt=0)
+# c -> [<Category: Актрисы>, <Category: Певицы>]
+
+# Класс F
+# from django.db.models import F
+# Women.objects.filter(pk__gt=F('cat_id')) -> pk>cat_id - все записи кроме первой
+# Допустим. Для увеличение значения при просмотре таблицы
+# Women.objects.filter(slug='bejonce').update(views=F('views')+1)
+# Или
+# w = Women.objects.get(pk=1)
+# w -> Women: Анджелина Джоли
+# w.view = F('view')+1
+# w.save()
+
+# Вычисления на стороне СУБД
+# from django.db.models.functions import Length
+# ps = Women.objects.annotite(len=Length('title'))
+# ps
+# for item in ps:
+#   print(item.title, item.len) -> Анджелина Джоли 15 Дженифер Лоуренс 17....
+
+# raw SQL запросы - запросы в чистом виде
+# Manager.raw(<SQL-запрос>)
+# Women.objects.raw('SELECT * FROM women_women') -> <RawQuerySet: SELECT * FROM women_women>
+# w = _
+# for p in w:
+#  print(p.pk, p.title) -> 1 Анджелина Джоли 2 Дженнифер Лоуренс......
+
+# Передача параметров в запрос
+# slug = 'Shakira' - переменная
+# Women.objects.raw("SELECT id, title FROM women_women WHERE slug='%s'", [slug]) -> безопасная вставка переменной
+
