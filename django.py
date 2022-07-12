@@ -577,3 +577,21 @@
 # slug = 'Shakira' - переменная
 # Women.objects.raw("SELECT id, title FROM women_women WHERE slug='%s'", [slug]) -> безопасная вставка переменной
 
+
+# 17. Django
+
+# DataMixin для class WomenHome, AddPage, ShowPost, WomenCategory
+# djbooks.ru/rel3.0/topics/auth/defult.html
+# LoginRequiredMixin - миксин для классов
+# @login_required - декоратор для функции
+
+# Авторизованные будут видеть пунк "Добавить статью"
+# user_menu = menu.copy()
+# if not self.request.user.is_authenticated:
+#   user_menu.pop(1)
+# context['menu'] = user_menu
+
+# Если в категории нету постов, то - не отображать
+# from django.db.models.aggregates import Count
+# cats = Category.objects.annotate(Count('women')) -> utils.py
+# {% if c.women__count > 0 %} ... {% endif %} -> base.html
