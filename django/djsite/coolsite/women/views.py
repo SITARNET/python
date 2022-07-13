@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404 # встрен�
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 
 from .forms import * # AddPostForm
 from .models import *
@@ -29,7 +30,11 @@ class WomenHome(DataMixin, ListView):
         return Women.objects.filter(is_published=True) # то что должно быть прочитано из модели Women
 
 def about(request):
-    return render(request, 'women/about.html', {'title': 'О сайте'})
+  contact_list = Women.objects.all()
+  paginator = Paginator(contact_list, 3)
+  page_namber = request.GET.get('page')
+  page_obj = paginator.get_page(page_namber)
+  return render(request, 'women/about.html', {'page_obj': page_obj, 'menu': menu, 'title': "О сайте"})
 
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm # класс формы
