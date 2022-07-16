@@ -3,8 +3,7 @@ from django.db.models.aggregates import Count
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Дабавить статью", 'url_name': 'add_page'},
-        {'title': "Обратная связь", 'url_name': 'contact'},
-        {'title': "Войти", 'url_name': 'login'}
+        {'title': "Обратная связь", 'url_name': 'contact'}
         ]
 
 
