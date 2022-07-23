@@ -645,3 +645,16 @@
 # добавление нового поля в форму
 # docs.djangoprojects.com/en/3.1/topics/auth/customizing/
 
+# 20. Django
+
+# Авторизован? -> request.user.is_authenticated
+# Аторизация -> LoginView
+# djbook.ru/rel3.0/topics/auth/default.html
+
+# def get_success_url(self):
+#   return reverse_lazy('home')
+# или settings.py -> LOGIN_REDIRECT_URL = '/'
+
+# при регистрации автоматически делает вход
+# метод from_valid(self, form) -> class RegisterUser
+
