@@ -748,5 +748,18 @@
 # Всё кэширование надо включать на конечном этапе разработки сайта!!!
 
 
+# 23. Django
+
+# Обратная связь (использование капчи Captcha)
+# views.py -> class ContactFormView(DataMixin, FormView)
+# forms.py -> class ContactForm(forms.Form)
+# urls.py -> path('contact/', ContactFormView.as_view(), name='contact')
+
+# https://pypi.org/ -> django-simple-captcha
+# pip install django-simple-captcha
+# settings.py -> INSTALLED_APPS -> captcha
+# python manage.py migrate
+# coolsite/urls.py -> path('captcha/', include('captcha.urls'))
+# forms.py -> captcha = CaptchaField()
 
 
