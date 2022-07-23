@@ -721,6 +721,32 @@
 #         c_def = self.get_user_context(title='Категория - ' + str(c.name), cat_selected=c.pk)
 
 
+# 22. Django
+
+# djbook.ru/rel3.0/topics/cache.html
+# Кэширование на файловую систему - самая популярная
+# settings.py -> CACHES = {...}
+
+# Кэширование на уровне представлений
+# Кэш главной страницы -> urls.py -> path('', cache_page(60)(WomenHome.as_view()), name='home')
+
+# Кэширование на уровне шаблонов
+# {% load cache %}
+# {% cache 60 sidebar %} .... {% endcache %}
+
+# API низкого уровня для кэширования
+# cache.set() - сохранение произвольных данных в кэш по ключу
+# cache.get() - выбор произвольных данных из кэша по ключу
+# cache.add() - заносит новое значение в кэш, если его там ещё нет (иначе данная операция игнорируется)
+# cache.get_or_set() - извлекает данные из кэша, если их нет, то автоматически заносится значение по умолчанию
+# cache.delete() - удаление данных из кэша по ключу
+# cache.clear() - полная очистка кэша
+
+# Закэшируем в utils.py -> class DataMixin -> cats = Category.objects.annotate(Count('women'))
+# from django.core.cache import cache
+
+# Всё кэширование надо включать на конечном этапе разработки сайта!!!
+
 
 
 
