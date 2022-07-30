@@ -50,3 +50,23 @@
 # http://127.0.0.1:8000/api/v1/womenlist/ -> выводит все записи в виде JSON
 
 
+# 3. REST
+
+# создание представления -> class WomenAPIView()
+# создания сериализатора -> class WomenSerializer()
+# маршрутизация -> urlpatterns = [...]
+
+# Создание представления
+# https://www.django-rest-framework.org/api-guide/generic-views/
+
+# POSTMAN
+# sudo apt update
+# sudo apt upgrade
+# sudo snap install postman
+
+# def get() -> для get запроса
+# def post() -> для post запроса
+
+# POST -> Body -> JSON -> SEND
+
+
