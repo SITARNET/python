@@ -110,3 +110,25 @@
 #       'rest_framework.renderers.BrowsableAPIRenderer' - коментируем - отключаем браузерное API (показывает сырые данные JSON)
 #   ]
 # }
+
+
+# 8. REST
+
+# https://www.django-rest-framework.org/api-guide/viewsets/
+# ModelViewSet
+# Какие методы -> раздел ViewSets Action
+
+# Routers
+# https://www.django-rest-framework.org/api-guide/routers/
+# SimpleRouter
+# DefaultRouter
+
+# from rest_framework import routers
+#
+# router = routers.SimpleRouter() # оздаёт объект класса SimpleRouter()
+# router.register(r'women', WomenViewSet) # регистрируем роутер
+#
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('api/v1/', include(router.urls)), # подключаем все маршруты которые связаны с ViewSet (../api/v1/women/)
+# ]
