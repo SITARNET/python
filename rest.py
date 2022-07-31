@@ -82,3 +82,20 @@
 # create(self, validated_data) - для добавления (создания) записи данных
 # update(self, instance, validated_data) - для изменения данных
 # delete(self, instance) - для удаления данных
+
+
+# 6. REST
+
+# Класс ModelSerializer - упрощает текст программы при описании сериализатора связанного с моделями Django
+
+# Классы представлений
+# CreateAPIView - создание данных по POST-запросу
+# ListAPIView - чтение списка данных по GET-запросу
+# RetrieveAPIView - чтение конкретных данных (записи) по GET-запросу
+# DestroyAPIView - удаление данных (записи) по DELETE-запросу
+# UpdateAPIView - изменение записи по PUT- или PATCH-запросу
+# ListCreateAPIView - для чтения (по GET-запросу) и создания списка данных (по POST-запросу)
+# RetrieveUpdateAPIView - чтение и изменение отдельной записи (GET- и POST-запрос)
+# RetrieveDestroyAPIView - чтение (GET-запрос) и удаление (DELETE-запрос) отдельной записи
+# RetrieveUpdateDestroyAPIView - чтение, изменение и добавление отдельной записи (GET-, PUT-, PATCH-, DELETE-запросы)
+
