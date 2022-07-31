@@ -99,3 +99,14 @@
 # RetrieveDestroyAPIView - чтение (GET-запрос) и удаление (DELETE-запрос) отдельной записи
 # RetrieveUpdateDestroyAPIView - чтение, изменение и добавление отдельной записи (GET-, PUT-, PATCH-, DELETE-запросы)
 
+
+# 7. REST
+
+# Глобальные настройки Django REST Framework
+# settings.py
+# REST_FRAMEWORK = {
+#   'DEFAULT_RENDERER_CLASSES': [
+#       'rest_framework.renderers.JSONRenderer',
+#       'rest_framework.renderers.BrowsableAPIRenderer' - коментируем - отключаем браузерное API (показывает сырые данные JSON)
+#   ]
+# }
