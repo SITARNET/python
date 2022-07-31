@@ -76,3 +76,9 @@
 # def encode() -> кодирует в JSON формат (объект в словарь, потом JSON строку)
 # def decode() -> c JSON в упорядоченный словарь
 
+
+# 5. REST
+
+# create(self, validated_data) - для добавления (создания) записи данных
+# update(self, instance, validated_data) - для изменения данных
+# delete(self, instance) - для удаления данных
