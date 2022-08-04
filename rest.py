@@ -132,3 +132,38 @@
 #     path('admin/', admin.site.urls),
 #     path('api/v1/', include(router.urls)), # подключаем все маршруты которые связаны с ViewSet (../api/v1/women/)
 # ]
+
+
+# 9. REST
+
+# Как использовать роутеры
+
+# [<URLPattern '^women/$' [name='women-list']>,
+# <URLPattern '^women\.(?P<format>[a-z0-9]+)/?$' [name='women-list']>,
+# <URLPattern '^women/(?P<pk>[^/.]+)/$' [name='women-detail']>,
+# <URLPattern '^women/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$' [name='women-detail']>,
+# <URLPattern '^$' [name='api-root']>,
+# <URLPattern '^\.(?P<format>[a-z0-9]+)/?$' [name='api-root']>]
+
+# /api/v1/women/            /api/v1/women/pk/         /api/v1/
+# basename='men'
+# если надо определить свой маршрут
+# @action - декоратор
+
+# Список категорий
+# <URLPattern '^women/category/$' [name='women-category']>,
+# <URLPattern '^women/category\.(?P<format>[a-z0-9]+)/?$' [name='women-category']>
+
+# @action(methods=['get'], detail=False)
+#     def category(self, request):
+#         cats = Category.objects.all()
+#         return Response({'cats': [c.name for c in cats]})
+
+# http://127.0.0.1:8000/api/v1/women/category/ - список категорий
+
+# @action(methods=['get'], detail=True)
+#     def category(self, request, pk=None):
+#         cats = Category.objects.get(pk=pk)
+#         return Response({'cats': cats.name})
+
+# http://127.0.0.1:8000/api/v1/women/1/category/ - одна категория

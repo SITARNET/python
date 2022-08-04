@@ -19,8 +19,9 @@ from django.urls import path, include
 from women.views import *
 from rest_framework import routers
 
-router = routers.SimpleRouter() # оздаёт объект класса SimpleRouter()
-router.register(r'women', WomenViewSet) # регистрируем роутер
+router = routers.DefaultRouter()
+router.register(r'women', WomenViewSet)
+print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
