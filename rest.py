@@ -134,6 +134,7 @@
 # ]
 
 
+
 # 9. REST
 
 # Как использовать роутеры
@@ -167,3 +168,44 @@
 #         return Response({'cats': cats.name})
 
 # http://127.0.0.1:8000/api/v1/women/1/category/ - одна категория
+
+
+# 10. REST
+
+# models.py -> user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
+# from django.contrib.auth.models import User
+# python manage.py makemigrations
+# 1 -> default -> 1
+# python manage.py migrate
+
+# AllowAny - полный доступ
+# IsAuthenticated - только для авторизованных пользователей
+# IsAdminUser - только администраторов
+# IsAuthenticatedOrReadOnly - только для авторизованых или всем, но для чтения
+
+# https://www.django-rest-framework.org/api-guide/permissions/
+
+# serializer.py -> class WomenSerialazer() -> user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+# Чтобы просматривать мог каждый, а удалять - администратор
+# Custom permissions
+
+# class BasePermission(metaclass=BasePermissionMetaclass):
+#   def has_permission(self, request, view):
+#       return True
+#   def has_object_permission(self, request, view, obj):
+#       return True
+
+# women/permissions.py -> все классы с permissions
+
+# Чтобы просматривать мог каждый, а изменять только автор статьи
+
+# Можем назначать глобальные ограничения -> settings.py
+# 'DEFAULT_PERMISSION_CLASSES': [
+#       'rest_framework.permission.IsAuthenticated' - только авторизованым пользователям
+#   ]
+
+# 'DEFAULT_PERMISSION_CLASSES': [
+#       'rest_framework.permission.AllowAny' - по умолчанию
+#   ]
+

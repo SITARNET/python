@@ -6,30 +6,12 @@ from rest_framework.renderers import JSONRenderer
 
 from .models import Women
 
-# class WomenModel:
-#     def __init__(self, title, content):
-#         self.title = title
-#         self.content = content
-
-
 class WomenSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Women # с какой моделью будем работать
-        # fields = ("title", "content", "cat") # поля которые будем возвращать клиенту
-        fields = "__all__" # все поля
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
-# def encode():
-#     model =WomenModel('Angelina Jolie', 'Content: Angelina Jolie')
-#     model_sr = WomenSerializer(model)
-#     print(model_sr.data, type(model_sr.data), sep='\n')
-#     json = JSONRenderer().render(model_sr.data) # байтовая строка в JSON формате
-#     print(json)
-#
-# def decode():
-#     stream = io.BytesIO(b'{"title":"Angelina Jolie","content":"Content: Angelina Jolie"}')
-#     data = JSONParser().parse(stream)
-#     serializer = WomenSerializer(data=data)
-#     serializer.is_valid()
-#     print(serializer.validated_data)
+    class Meta:
+        model = Women
+        fields = "__all__"
+
 
 

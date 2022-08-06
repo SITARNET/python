@@ -4,8 +4,13 @@
     <content url="file://$MODULE_DIR$/django/djsite">
       <sourceFolder url="file://$MODULE_DIR$/django/djsite" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/django/djsite/coolsite" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/django/djsite/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/django/djsite" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (python)" jdkType="Python SDK" />
+    <content url="file://$MODULE_DIR$/django/drf">
+      <sourceFolder url="file://$MODULE_DIR$/django/drf/drfsite" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.6 (djsite)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
