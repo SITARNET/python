@@ -219,4 +219,42 @@
 
 # https://www.django-rest-framework.org/api-guide/authentication/
 
-#
+
+# 12. REST
+
+# Token-based authentication
+# обычная аунтефикация токенами (библтотека Djoser)
+# JWT-токены (библиотека Simple JWT)
+
+# https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication
+
+# https://djoser.readthedocs.io/en/latest/
+
+# pip install djoser
+# settings.py -> INSTALLED_APPS -> rest_framework.authtoken -> djoser
+
+# python manage.py migrate
+
+# urls.py -> urlpatterns
+# path('api/v1/auth/', include('djoser.urls')),
+# re_path(r'^auth/', include('djoser.urls.authtoken')),
+
+# settings.py -> REST_FRAMEWORK -> DEFAULT_AUTHENTICATION_CLASSES
+# 'rest_framework.authentication.TokenAuthentication' - по токенам
+# 'rest_framework.authentication.BasicAuthentication' - по сессиям (по умолчанию)
+# 'rest_framework.authentication.SessionAuthentication' - по сессиям (по умолчанию)
+
+# https://djoser.readthedocs.io/en/latest/base_endpoints.html
+
+# User create
+# POSTMAN -> http://127.0.0.1:8000/api/v1/auth/users/ -> POST -> Body -> form-data
+# username -> seconduser, password -> SJKNdhcd1234, email -> seconduser@ukr.net
+
+# Авторизация нового пользователя (seconduser)
+# POSTMAN -> http://127.0.0.1:8000/auth/token/login/ -> POST -> Body -> form-data
+# username -> seconduser, password -> SJKNdhcd1234
+
+# Для каждого класса можно использовать авторизацию по сессиям или токенам
+# authentication_classes = (TokenAuthentication, )
+
+
