@@ -209,3 +209,14 @@
 #       'rest_framework.permission.AllowAny' - по умолчанию
 #   ]
 
+
+# 11. REST
+
+# Session-based authentication - аунтефикация на основе сессий и cookie
+# Token-based authentication - на основе токенов
+# JSON Web Token (JWT) authentication - на основе JWT-токенов
+# Django REST framework OAuth - через социальные сети
+
+# https://www.django-rest-framework.org/api-guide/authentication/
+
+#
