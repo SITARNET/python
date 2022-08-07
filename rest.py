@@ -258,3 +258,17 @@
 # authentication_classes = (TokenAuthentication, )
 
 
+# 13. REST
+
+# JSON Web Token (JWT)
+# sdiufhsif84ry9w48fh948h9w uiefhfhf89f98h349hf4398hf98fhewef sdkuh98hd98hehd839d
+# header                    payload                      signature
+# {"alg":"HS256", "typ":"JWT"} {"userid":1,"exp":1000,"email":"user@ukr.net"} HMAC-SHA256(header.payload,SECRET_KEY)
+# header=base64urlEncode(b'...')
+# payload=base64urlEncode(b'...')
+# signature=HMAC-SHA256(header.payload,SECRET_KEY)
+# jwt_token = header.payload.signature
+
+# JWT-authorization/authentication
+# access_token = 5 мин.
+# refresh_token = от 24 ч.
