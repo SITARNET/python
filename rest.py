@@ -320,3 +320,19 @@
 # }
 
 # https://jwt.io/
+
+
+# 15. REST
+
+# https://www.django-rest-framework.org/api-guide/pagination/
+# settings.py
+# 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+# 'PAGE_SIZE': 100
+
+# Для определённых API запросов настраивать свои параметры пагинации
+# class WomenAPIList ->
+# class WomenAPIListPagination(PageNumberPagination)
+
+# page_size = 3 - колличество записей на страницу
+# page_size_query_param = 'page_size' - колличество записей на страницу в get-запросе (?page_size=4)
+# max_page_size = 10000 - максммальное значение записей
