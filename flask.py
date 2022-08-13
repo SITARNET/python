@@ -13,3 +13,8 @@
 
 # if __name__ == "__main__": - для запуска локального вервера
 #   app.run(debug=True) - режим откладки
+
+# 2. Flask
+
+# render_template
+# base.html - общий шаблон
