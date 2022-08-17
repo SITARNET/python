@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/django/djsite" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/django/djsite/coolsite" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/flasksite" />
     <orderEntry type="jdk" jdkName="Python 3.10 (djsite)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
